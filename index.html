@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jahvar Edwards — Live Sports Projection Platform</title>
+<meta name="description" content="A live multi-sport projection and pricing platform: architecture, how models are graded, and what the measurement showed.">
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --bg:#0e1116; --panel:#161b22; --line:#2a313b; --ink:#e6edf3; --dim:#9aa6b2;
+    --accent:#7ee787; --accent-dim:#2d4a35;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:880px;margin:0 auto;padding:56px 20px 80px}
+  header{border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:40px}
+  h1{font-size:30px;line-height:1.2;margin:0 0 6px;letter-spacing:-.3px}
+  .sub{color:var(--dim);font-size:15px;margin:0 0 14px}
+  .contact{font-size:14px;color:var(--dim)}
+  .contact a{color:var(--accent);text-decoration:none}
+  .contact a:hover{text-decoration:underline}
+  h2{font-size:19px;margin:44px 0 10px;letter-spacing:-.2px}
+  h3{font-size:15px;margin:28px 0 6px;color:var(--accent)}
+  p{margin:0 0 14px}
+  .lead{font-size:17px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:18px 0 6px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:13px 15px}
+  .card b{display:block;font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
+  .card span{font-size:14px;color:var(--dim)}
+  figure{margin:22px 0 28px}
+  figure img{width:100%;border:1px solid var(--line);border-radius:7px;display:block}
+  figcaption{font-size:14px;color:var(--dim);margin-top:9px}
+  ul{margin:0 0 14px;padding-left:20px}
+  li{margin-bottom:7px}
+  .note{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
+        border-radius:6px;padding:16px 18px;margin:28px 0}
+  .note p:last-child{margin-bottom:0}
+  footer{margin-top:52px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--dim)}
+  @media (prefers-color-scheme: light){
+    :root{--bg:#ffffff;--panel:#f6f8fa;--line:#d8dee4;--ink:#1f2328;--dim:#59636e;--accent:#1a7f37}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Live multi-sport projection &amp; pricing platform</h1>
+  <p class="sub">An independent project I designed, built and operate solo — NBA, NHL, NFL, MLB.</p>
+  <p class="contact"><strong>Jahvar Edwards</strong> · jahvaredwards@gmail.com · 609-240-2409 ·
+     New&nbsp;Jersey · <a href="https://www.linkedin.com/in/jahvar-edwards/">LinkedIn</a></p>
+</header>
+
+<p class="lead">This page exists so the claims on my resume can be checked rather than taken on trust.
+The platform runs unattended through every game window on a single Windows host. The screenshots are
+real, taken on one night in November 2026 — three from the hockey instance, then basketball and football
+running the same stack.</p>
+
+<div class="grid">
+  <div class="card"><b>Leagues</b><span>NBA · NHL · NFL · MLB</span></div>
+  <div class="card"><b>Ingestion</b><span>play-by-play, injury, roster, confirmed lineups, paid &amp; free odds</span></div>
+  <div class="card"><b>Storage</b><span>SQLite, tens of GB, WAL + scheduled checkpoints</span></div>
+  <div class="card"><b>Models</b><span>Main plus challengers: score-state WP, Poisson goals, drive simulation, structural blends</span></div>
+  <div class="card"><b>Grading</b><span>Brier scores, MAE, bias, coverage, paired deltas vs Main</span></div>
+  <div class="card"><b>Operations</b><span>health checks, resource ceilings, phone alerts, tested rollback</span></div>
+</div>
+
+<h2>1 · How every model gets graded</h2>
+<figure>
+  <img src="img_review.jpg" alt="Prospective research review showing MAE, bias, coverage and paired deltas per model">
+  <figcaption>Each model and market scored prospectively: total MAE, margin MAE, bias, 95% coverage and a paired
+  delta against the Main model, over independently settled games only. Repeated models, minutes and lead buckets
+  do not inflate the game count. Finals wait six hours for revisions, the review checkpoint is 80 games, and there
+  is <strong>no automatic promotion</strong> — models sit in warm-up until they have earned a verdict.</figcaption>
+</figure>
+
+<h2>2 · Six declared methods, each keeping its reason</h2>
+<figure>
+  <img src="img_blends.jpg" alt="Blend lab showing six declared blending methods and the rule each one follows">
+  <figcaption>Blending methods are declared in advance with their rules visible: an equal-weight family reference,
+  a 60/40 Main anchor, a disagreement guard that holds when the declared distribution limit is exceeded, a
+  regularised consensus pool, a lineup-opportunity method that waits for officially dressed skaters and confirmed
+  goalies, and a situational learner requiring 30 settled comparable games at the same lead bucket. Each one shows
+  why it is holding instead of quietly producing a number.</figcaption>
+</figure>
+
+<h2>3 · The same system in live operation</h2>
+<figure>
+  <img src="img_dash.jpg" alt="Live dashboard showing the night's slate, model table and calibration panel">
+  <figcaption>A full card with model win probability and projected total per game, one game opened to its model
+  table — situational blend, Main, Poisson, process and a control arm, each carrying its own status rather than
+  collapsing into a single number. The chips along the top are the platform reporting its own stale feeds and a
+  late audit runner rather than hiding them.</figcaption>
+</figure>
+
+<h2>4 · The same stack, other leagues</h2>
+<p>Hockey is the instance shown above. Basketball, football and baseball run the same architecture with
+sport-specific models — the screenshots below were taken the same night.</p>
+
+<h3>Basketball — a live game, mid-projection</h3>
+<figure>
+  <img src="img_nba.jpg" alt="NBA dashboard during a live game showing projections, a live rule and calibration">
+  <figcaption>A game in the second quarter. Left: score, lead and the slate around it. Centre: the live total,
+  the model's projected final (110–106), whether the models agree (they do not — "No, split"), and a live rule
+  that has fired, labelled <strong>paper test</strong> with its running record and a read date at 100 picks, so
+  it cannot be quietly treated as proven. Right: how far off each forecast has been, by points-scored bucket and
+  by lead, with bias shown separately for Main and the blend. The chips at the top carry the operational state,
+  including which data source is carrying after one was paused, and how many paid odds credits remain against the
+  budget.</figcaption>
+</figure>
+
+<h3>Football — a settled flag, scored honestly</h3>
+<figure>
+  <img src="img_nfl.jpg" alt="NFL dashboard showing a settled paper-test flag and model error panel">
+  <figcaption>The football instance after a result. The flag at the top is marked
+  <strong>PAPER, NOT PROVEN</strong> and shows its decimal price and the period it fired in; the original price is
+  retained so the record cannot be improved after the fact. Down the left is the week's card with each settled
+  flag and its outcome. On the right, forecast error split by clock and lead, and below it the process blends
+  still sitting under sealed test.</figcaption>
+</figure>
+
+<h2>What the measurement actually showed</h2>
+<ul>
+  <li><strong>My confidence was optimistic.</strong> Stated confidence around 76% corresponded to roughly 49%
+      realised, where the book sat near 55%, across 178 graded legs.</li>
+  <li><strong>Correlated legs are worth less than they look.</strong> Teammates moving in the same direction won
+      together about 4% less often than an independence assumption predicts — which is why the rules now allow one
+      selection per player-game.</li>
+  <li><strong>The real opportunity is timing, not cleverness.</strong> The clearest measurable edge is
+      line-versus-score lag: the window where a posted number has not yet absorbed what just happened.</li>
+  <li><strong>Ideas get killed.</strong> A hypothesis about missing stat categories was tested, retested on a
+      larger sample, and abandoned when it explained nothing.</li>
+</ul>
+
+<h2>Operating it</h2>
+<ul>
+  <li>Scheduled collectors per sport and cadence; paid odds pulls run against a per-day credit budget with a usage
+      ledger, with free ladders filling the gaps between captures.</li>
+  <li>Guards fail closed: malformed vendor data halts a component rather than publishing a number I would act on.</li>
+  <li>Changes ship as staged installs with tested rollback, verified by replay against prior data and nightly
+      golden-case checks — never by whether the process is running.</li>
+  <li>One outage was traced through logs, process state and database evidence to resource contention, a degraded
+      query and malformed input; an index took a key lookup from about two seconds to under one millisecond.</li>
+</ul>
+
+<div class="note">
+  <p><strong>Stated plainly:</strong> the platform was built with heavy AI assistance, and the models do not
+  reliably beat closing markets. I know that because every output is graded against the market and the record is
+  kept whether or not it flatters the model. What I would bring to a desk is the operational practice and the
+  honest measurement, not a claim of edge.</p>
+</div>
+
+<footer>
+  Screenshots captured 24 November 2026. No credentials, hostnames, vendor terms or model internals are shown.
+  Happy to walk through any of it in detail — jahvaredwards@gmail.com
+</footer>
+
+</div>
+</body>
+</html>
