@@ -3,9 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jahvar Edwards — I built a machine that watches live sports</title>
-<meta name="description" content="A system I built and run on my own: it watches live NBA, NHL, NFL and MLB games, predicts what happens next, and grades itself against the betting market every single time.">
+<title>Jahvar Edwards | Technical Support and Platform Operations</title>
+<meta name="description" content="Enterprise integration support and an independently operated, AI-assisted sports-data platform. Explore real dashboards, incident investigations and architecture.">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b0e13">
+<meta property="og:title" content="Jahvar Edwards | Technical Support and Platform Operations">
+<meta property="og:description" content="Enterprise support, AI-assisted systems and incident investigation, with real dashboard examples.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cptvar.github.io/">
 <style>
 :root{
   --bg:#0b0e13; --bg2:#101620; --panel:#151c27; --line:#232c3a; --line2:#334155;
@@ -14,23 +19,27 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+section,header{scroll-margin-top:78px}
 body{margin:0;background:var(--bg);color:var(--ink);
   font:18px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   -webkit-font-smoothing:antialiased}
 a{color:var(--accent)}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--accent2);outline-offset:5px;border-radius:3px}
+.skip{position:fixed;left:16px;top:-80px;z-index:100;padding:10px 16px;background:var(--ink);color:var(--bg)}
+.skip:focus{top:10px}
 .wrap{max-width:860px;margin:0 auto;padding:0 22px}
 
 nav{position:sticky;top:0;z-index:50;background:rgba(11,14,19,.88);backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;align-items:center;gap:20px;height:56px;overflow-x:auto;max-width:980px}
 nav .me{font-weight:700;white-space:nowrap}
-nav a{color:var(--dim);text-decoration:none;font-size:15px;white-space:nowrap}
+nav a{color:var(--dim);text-decoration:none;font-size:15px;white-space:nowrap;padding:10px 0}
 nav a:hover{color:var(--ink)}
 
-header{padding:80px 0 52px;
+header{padding:70px 0 52px;
   background:radial-gradient(900px 360px at 15% -10%, rgba(110,231,160,.10), transparent 70%)}
 .kicker{font:700 13px/1 var(--mono);letter-spacing:2.4px;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
-h1{font-size:clamp(32px,5.4vw,50px);line-height:1.1;margin:0 0 20px;letter-spacing:-1.2px;max-width:17ch}
+h1{font-size:clamp(36px,5vw,58px);line-height:1.08;margin:0 0 22px;letter-spacing:-1.5px;max-width:18ch}
 .big{font-size:21px;line-height:1.65;color:var(--ink);max-width:62ch;margin:0 0 16px}
 .tagline{font-size:18px;color:var(--dim);max-width:64ch;margin:0 0 28px}
 .actions{display:flex;flex-wrap:wrap;gap:10px}
@@ -38,6 +47,40 @@ h1{font-size:clamp(32px,5.4vw,50px);line-height:1.1;margin:0 0 20px;letter-spaci
   border:1px solid var(--line2);color:var(--ink);background:var(--panel)}
 .btn.primary{background:var(--accent);color:#06240f;border-color:var(--accent)}
 .btn:hover{border-color:var(--accent)}
+.hero-grid{max-width:1180px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:42px;align-items:center}
+.hero-grid .big{font-size:20px;line-height:1.6}
+.hero-grid .kicker{font-size:11px;letter-spacing:1.7px;line-height:1.6}
+.hero-evidence{min-width:0;margin:0;border:1px solid var(--line2);border-radius:14px;background:var(--panel);overflow:hidden;box-shadow:0 24px 70px #0003}
+.hero-evidence .evidence-label{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;font:12px/1.5 var(--mono);color:var(--dim);border-bottom:1px solid var(--line)}
+.hero-evidence .evidence-label b{color:var(--accent);font-weight:600}
+.hero-evidence img{border:0;border-radius:0;width:100%;display:block;height:auto}
+.hero-evidence figcaption{padding:16px 18px;margin:0;font-size:15px;line-height:1.6}
+.hero-evidence figcaption a{display:inline-block;margin-top:6px;font-weight:600;text-decoration:none}
+.ownership{font-size:14px;line-height:1.6;color:var(--dim);margin:20px 0 0}
+.section-intro{color:var(--dim);font-size:18px}
+.role-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
+.role-card{border-top:2px solid var(--accent);padding:18px 0 0}
+.role-card h3{margin:0 0 10px;font-size:18px;line-height:1.4}
+.role-card p{font-size:16px;line-height:1.65;color:var(--dim);margin-bottom:14px}
+.role-card a{font-size:15px;font-weight:600;text-decoration:none}
+.proof-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0 0;padding:0;list-style:none;max-width:none}
+.proof-list li{margin:0;padding:15px 16px;border:1px solid var(--line);border-radius:8px;font-size:15px;line-height:1.5;color:var(--dim)}
+.proof-list strong{display:block;color:var(--ink);margin-bottom:5px}
+.contact-panel{border:1px solid var(--line2);border-radius:12px;padding:28px;background:var(--panel);margin-top:30px}
+.contact-panel h3{margin:0 0 12px;font-size:23px}
+.contact-panel p{font-size:17px;color:var(--dim)}
+.source-link{font-size:14px;margin-top:16px}
+.source-overview{margin:38px 0 0;padding-top:30px;border-top:1px solid var(--line2)}
+.source-overview h3{font-size:24px;line-height:1.3;margin:0 0 12px;letter-spacing:-.3px}
+.source-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:24px 0}
+.source-card{border:1px solid var(--line2);border-radius:10px;padding:20px;background:var(--panel)}
+.source-card .status{display:block;font:600 12px/1.4 var(--mono);letter-spacing:.5px;margin-bottom:12px;color:var(--accent2)}
+.source-card strong{display:block;font-size:18px;line-height:1.4;margin-bottom:10px}
+.source-card p{font-size:16px;line-height:1.65;color:var(--dim);margin:0}
+.source-boundary{font-size:16px;line-height:1.65;border-left:3px solid var(--accent);padding-left:16px;color:var(--dim)}
+.source-overview details{max-width:none;margin-top:24px}
+.source-overview figure{margin:16px 0 4px}
+.source-overview figcaption{font-size:14px;color:var(--dim)}
 
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:1px;background:var(--line);
   border-block:1px solid var(--line);max-width:980px;margin:0 auto}
@@ -68,7 +111,7 @@ li{margin-bottom:11px}
 .step::before{content:counter(s);position:absolute;left:-21px;top:-4px;width:40px;height:40px;border-radius:50%;
   background:var(--panel);border:2px solid var(--accent);color:var(--accent);
   font:700 18px/36px var(--mono);text-align:center}
-.step h4{margin:0 0 6px;font-size:19px}
+.step h3{margin:0 0 6px;font-size:19px}
 .step p{margin:0;color:var(--dim);font-size:17px}
 
 details{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:0;margin:18px 0;max-width:64ch}
@@ -81,7 +124,7 @@ details .inner p{max-width:none;margin:0 0 12px}
 details .inner p:last-child{margin:0}
 
 figure{margin:30px 0 38px}
-figure img{width:100%;border:1px solid var(--line2);border-radius:10px;display:block;background:var(--bg2)}
+figure img{width:100%;height:auto;border:1px solid var(--line2);border-radius:10px;display:block;background:var(--bg2)}
 figcaption{font-size:17px;color:var(--ink);margin-top:14px;max-width:72ch}
 figcaption .tech{display:block;font-size:15px;color:var(--dim);margin-top:8px}
 .shotlabel{font:700 12.5px/1 var(--mono);letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);
@@ -93,7 +136,7 @@ figcaption .tech{display:block;font-size:15px;color:var(--dim);margin-top:8px}
 .card span{font-size:16px;color:var(--dim);line-height:1.6}
 
 .story{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:20px 0;max-width:68ch}
-.story h4{margin:0 0 10px;font-size:19px}
+.story h3{margin:0 0 10px;font-size:19px}
 .story p{margin:0 0 12px;font-size:17px}
 .story p:last-child{margin:0}
 .story .lesson{color:var(--accent);font-weight:600}
@@ -114,78 +157,119 @@ footer{padding:48px 0 76px;color:var(--dim);font-size:16px}
 @media(max-width:620px){
   body{font-size:17px}
   .step{padding-left:58px}
+  header{padding-top:42px}
+  .hero-grid{gap:28px}
+  .hero-grid .big{font-size:18px}
+  h1{font-size:40px;letter-spacing:-1px}
+  h2{font-size:27px}
+  .role-grid,.proof-list,.source-grid{grid-template-columns:1fr}
+  .contact-panel{padding:22px}
+  nav .wrap{gap:16px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;max-width:860px}.hero-evidence{max-width:620px}.role-grid{gap:22px}}
+@media(max-width:760px){.source-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{nav,.skip,.hero-evidence{display:none}body{background:#fff;color:#111;font-size:11pt}.wrap{max-width:none}header,section,footer{padding:16px 0}.role-grid,.proof-list{display:block}a{color:#111}.story,figure{break-inside:avoid}.section-intro,.tagline,.ownership,.role-card p{color:#333}}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<nav><div class="wrap">
-  <span class="me">Jahvar Edwards</span>
-  <a href="#what">What it is</a>
-  <a href="#how">How it works</a>
-  <a href="#see">See it</a>
-  <a href="#grade">Keeping score</a>
-  <a href="#broke">When it broke</a>
-  <a href="#learned">What I learned</a>
+<nav aria-label="Portfolio sections"><div class="wrap">
+  <a class="me" href="#main">Jahvar Edwards</a>
+  <a href="#fit">Experience</a>
+  <a href="#how">Architecture</a>
+  <a href="#see">Dashboards</a>
+  <a href="#broke">Incident stories</a>
+  <a href="#contact">Contact</a>
 </div></nav>
 
-<header><div class="wrap">
-  <div class="kicker">Built and run by one person · 2026 – present</div>
-  <h1>I built a machine that watches live sports and guesses what happens next.</h1>
-  <p class="big">Then — and this is the important part — it checks how wrong it was. Every time.
-  Thousands of times.</p>
-  <p class="tagline">It runs by itself, all night, across four sports, on one computer in my house.
-  Nobody else maintains it. This page shows you what it is, how it works, and what it taught me.</p>
+<main id="main" tabindex="-1">
+<header><div class="wrap hero-grid">
+ <div>
+  <div class="kicker">Enterprise integration support · Independent platform operations</div>
+  <h1>I troubleshoot the whole system.</h1>
+  <p class="big">I’m Jahvar Edwards, a Team Lead and Senior Integration &amp; Developer Support
+  Analyst. I investigate complex customer issues across APIs, logs and databases, then work with
+  Product and Engineering to reach a resolution.</p>
+  <p class="tagline">Outside work, I direct and operate an AI-assisted data platform across four
+  sports. It gives me a place to put that same judgment into practice: monitor the inputs, trace
+  failures and verify what the system actually produces.</p>
   <div class="actions">
-    <a class="btn primary" href="mailto:jahvaredwards@gmail.com">Email me</a>
-    <a class="btn" href="https://www.linkedin.com/in/jahvar-edwards/">LinkedIn</a>
-    <a class="btn" href="#see">Show me a picture</a>
+    <a class="btn primary" href="#broke">Read an incident</a>
+    <a class="btn" href="#see">Explore the dashboards</a>
   </div>
+  <p class="ownership">Personally directed and operated · AI-assisted build · New Jersey, US</p>
+ </div>
+ <figure class="hero-evidence">
+  <div class="evidence-label"><b>Inside the platform</b><span>Recorded dashboard</span></div>
+  <a href="#see" aria-label="Explore the platform dashboard examples"><img src="img_dash.jpg" alt="Hockey dashboard showing multiple game forecasts and feed health indicators" fetchpriority="high" width="2100" height="982" decoding="async"></a>
+  <figcaption>Game data, model outputs and feed health in one operating view.
+  <br><a href="#how">See how the pieces connect →</a></figcaption>
+ </figure>
 </div></header>
 
 <div class="stats">
-  <div class="stat"><b>4</b><span>sports it follows: basketball, hockey, football, baseball</span></div>
-  <div class="stat"><b>110</b><span>little programs that wake up on their own schedule</span></div>
-  <div class="stat"><b>13</b><span>screens I can open to see what it thinks</span></div>
-  <div class="stat"><b>234 GB</b><span>of saved game data — about 50,000 songs' worth</span></div>
-  <div class="stat"><b>0</b><span>other people keeping it alive</span></div>
+  <div class="stat"><b>4 sports</b><span>NBA, NHL, NFL and MLB workflows</span></div>
+  <div class="stat"><b>2026</b><span>independent platform work began</span></div>
+  <div class="stat"><b>1 operator</b><span>I direct, investigate and maintain it</span></div>
+  <div class="stat"><b>Real cases</b><span>documented failures and operating decisions</span></div>
 </div>
 
+<section id="fit"><div class="wrap">
+  <h2>How this translates to a team</h2>
+  <p class="section-intro">My day job provides the customer and escalation experience. The platform
+  shows how I apply it when I own the system and the investigation.</p>
+  <div class="role-grid">
+    <article class="role-card"><h3>Technical and integration support</h3>
+      <p>Work through APIs, authentication, logs and data to explain a failure. Give engineering a
+      reproducible case and keep the customer informed through resolution.</p>
+      <a href="#broke">Read a root-cause investigation →</a></article>
+    <article class="role-card"><h3>Platform and NOC operations</h3>
+      <p>Watch for missing output as well as stopped processes. Use monitoring, runbooks, backups and
+      replay checks to make changes with a clear recovery path.</p>
+      <a href="#how">Follow the operating workflow →</a></article>
+    <article class="role-card"><h3>Data and live sports operations</h3>
+      <p>Trace a forecast to its inputs, account for changing availability and preserve the record
+      needed to evaluate it. Make uncertainty visible before it becomes a confident answer.</p>
+      <a href="#grade">Explore the evaluation process →</a></article>
+  </div>
+  <ul class="proof-list">
+    <li><strong>Enterprise experience</strong>Trimble support since 2022; promoted to Team Lead and Senior Analyst in November 2026.</li>
+    <li><strong>Functional leadership</strong>Guide 3–4 analysts on a flagship enterprise customer’s cases, alongside hands-on investigation.</li>
+    <li><strong>Recognized improvement</strong>Trimble T&amp;L MVP, Innovate, Q2 2025, for support playbooks and operational improvements.</li>
+  </ul>
+</div></section>
+
 <section id="what"><div class="wrap">
-  <h2>What it is, in plain words</h2>
-
-  <p>Imagine you are watching a basketball game, and at every moment someone asks you:
-  <em>"So — who wins? And how many points will there be in total?"</em></p>
-
-  <p>You would guess. Your guess would change as the game went on. If the home team went up by 15,
-  you would feel more confident.</p>
-
-  <p>My machine does that, except it does it for every game at once, it updates every few seconds,
-  and it never gets bored or tired. It is doing this right now, tonight, whether or not I am awake.</p>
+  <h2>A live data platform, explained simply</h2>
+  <p>The platform collects game events, player availability and market data across basketball,
+  hockey, football and baseball. It uses several methods to estimate what may happen next, saves
+  their predictions and compares them with the eventual results.</p>
+  <p>For example, a late player scratch changes the inputs. A delayed feed can make a plausible
+  forecast out of date. The work is understanding those dependencies and showing when an output
+  needs more evidence.</p>
 
   <div class="plain">
-    <b>The part that actually matters</b>
-    <p>Guessing is easy. Anyone can guess. What makes this real is that the machine writes down every
-    guess <em>before</em> the game ends, and afterwards compares the guess to what really happened.
-    Over thousands of games, that tells me something a feeling never could: exactly how wrong I am,
-    and in which situations.</p>
+    <b>The operating principle</b>
+    <p>A running process is only the beginning. I check whether the expected output arrived, whether
+    its inputs were usable and whether its result can be evaluated afterwards.</p>
   </div>
 
-  <p>There is a second, harder job underneath it: the machine has to look after itself. I am asleep
-  when most of this runs. So it has to notice when a data source stops sending, when one of its own
-  programs quietly dies, when a disk is filling up — and it has to text my phone when something
-  actually needs a human.</p>
+  <p>The platform also runs scheduled work unattended. Health checks and phone alerts help surface
+  stale feeds, stalled jobs and resource constraints so I can investigate the part that needs attention.</p>
 
   <p>And when it cannot trust what it is being told, it stops. A machine that confidently prints a
   wrong number is worse than one that says nothing.</p>
 
   <details><summary>For the technical reader</summary>
     <div class="inner">
-      <p>Four independent machines (NBA, NHL, NFL, MLB) on one Windows host. 110 scheduled jobs plus
+      <p>Four sport-specific systems (NBA, NHL, NFL, MLB) on one Windows host, using scheduled jobs and
       long-running collector and scoring services. Ingest covers play-by-play, box scores, injuries,
       rosters and confirmed lineups, plus paid and free odds — paid pulls metered against a per-day
       credit budget with a usage ledger. Storage is SQLite with WAL, scheduled checkpoints, index
-      tuning and archival: 127 databases, 234 GB.</p>
+      tuning and archival.</p>
       <p>Each sport runs a Main model plus challengers — score-state win probability, Poisson goal
       models, drive simulation, four-factor and shot-rate × shot-quality structural blends, and
       period/quarter/half panels. Guards fail closed on malformed vendor data. Operations: health
@@ -196,55 +280,53 @@ footer{padding:48px 0 76px;color:var(--dim);font-size:16px}
 </div></section>
 
 <section id="how"><div class="wrap">
-  <h2>How it works, step by step</h2>
-  <p>Five steps. The same five, over and over, all night.</p>
+  <h2>From changing inputs to a checked result</h2>
+  <p class="section-intro">Five connected stages. Each needs a clear input, a useful output and a way
+  to notice when something is missing.</p>
 
   <div class="steps">
     <div class="step">
-      <h4>It collects</h4>
-      <p>Every few seconds it asks the internet what just happened in each game — who scored, who is
-      hurt, who is actually on the ice or the floor tonight. It also collects what the betting market
-      thinks, which is useful as a scoreboard for my own guesses.</p>
+      <h3>It collects</h3>
+      <p>Collectors gather game events, player status and prices on their own schedules. Source
+      freshness and paid API budgets are part of the operating checks.</p>
     </div>
     <div class="step">
-      <h4>It remembers</h4>
-      <p>Everything gets saved, because you cannot check whether you were right if you did not write
-      down what you thought at the time. That is where the 234 gigabytes went.</p>
+      <h3>It remembers</h3>
+      <p>SQLite records preserve inputs, predictions and outcomes. Keeping the earlier record makes
+      it possible to investigate an output and evaluate a method without rewriting its history.</p>
     </div>
     <div class="step">
-      <h4>It guesses — several ways at once</h4>
-      <p>Rather than one opinion, it runs several different methods side by side on the same game.
-      One is the long-standing favourite. The others are challengers trying to beat it. They disagree
-      often, and when they disagree, that itself is information.</p>
+      <h3>It compares several methods</h3>
+      <p>A reference model and challenger methods run alongside one another. Differences between
+      them remain visible, with availability and uncertainty affecting how an output is interpreted.</p>
     </div>
     <div class="step">
-      <h4>It grades itself</h4>
-      <p>When the game finishes, every guess gets a score for how far off it was. Not "did it win" —
-      <em>how wrong, by how much, and in what kind of situation</em>. A method only gets promoted after
-      it has beaten the favourite over enough games, on a date I set in advance.</p>
+      <h3>It grades itself</h3>
+      <p>Settled results support checks of forecast error, bias and uncertainty. Review points are
+      defined in advance, and a promising challenger does not automatically replace the reference.</p>
     </div>
     <div class="step">
-      <h4>It mostly stays quiet</h4>
-      <p>Most nights it has nothing confident to say, so it says nothing. It only speaks up when the
-      evidence clears a bar I set before the night started — or when something has broken and I need
-      to know.</p>
+      <h3>It holds outputs that need more evidence</h3>
+      <p>Guards can hold an output when required inputs or validation checks are missing. Operating
+      alerts help separate a deliberate hold from a service that has stopped doing its job.</p>
     </div>
   </div>
 
   <div class="plain">
-    <b>Why step 5 is the hard one</b>
-    <p>It is easy to build something that always has an opinion. It is much harder to build something
-    that knows when it does not know. Most of my work this year went into that.</p>
+    <b>What I own</b>
+    <p>I set priorities and operating rules, direct AI-assisted implementation, investigate failures
+    and check the results. Backups, replay checks and rollback procedures support that work.</p>
   </div>
 </div></section>
 
 <section id="see"><div class="wrap">
-  <h2>What it actually looks like</h2>
-  <p>Real screens from my own machine, all captured on one evening. Nothing here is a mock-up.</p>
+  <h2>Real dashboards, with the context to read them</h2>
+  <p class="section-intro">Screens captured from my platform on 24 November 2026. These are recorded
+  examples; the displayed forecasts and health states describe that capture, not a live feed.</p>
 
   <figure>
     <span class="shotlabel">A basketball game, in progress</span>
-    <img src="img_nba.jpg" alt="Live basketball dashboard with projections and accuracy panel">
+    <img src="img_nba.jpg" alt="Live basketball dashboard with projections and accuracy panel" width="2100" height="1400" decoding="async" loading="lazy">
     <figcaption>The game is in the second quarter. The machine thinks the final score will be about
     110–106, and it says plainly that its methods <em>disagree</em> with each other right now. The box
     on the right is its own report card: how far off it has been in games like this one.
@@ -256,7 +338,7 @@ footer{padding:48px 0 76px;color:var(--dim);font-size:16px}
 
   <figure>
     <span class="shotlabel">A whole night of hockey</span>
-    <img src="img_dash.jpg" alt="NHL dashboard showing fifteen games">
+    <img src="img_dash.jpg" alt="NHL dashboard showing fifteen games" width="2100" height="982" decoding="async" loading="lazy">
     <figcaption>Fifteen games at once, each with who it favours and how many goals it expects. The
     buttons let me jump to just the close games, or just the ones where the methods are arguing. Up in
     the corner, the machine is admitting that some of its own data is stale — it tells on itself.
@@ -267,7 +349,7 @@ footer{padding:48px 0 76px;color:var(--dim);font-size:16px}
 
   <figure>
     <span class="shotlabel">Football — a guess that already finished</span>
-    <img src="img_nfl.jpg" alt="NFL dashboard showing a settled flagged pick">
+    <img src="img_nfl.jpg" alt="NFL dashboard showing a settled flagged pick" width="2100" height="1366" decoding="async" loading="lazy">
     <figcaption>This one has a result. The machine said Houston would win, and they did. The label
     says <strong>PAPER, NOT PROVEN</strong>, which is me reminding myself that one correct guess
     proves nothing at all.
@@ -278,12 +360,9 @@ footer{padding:48px 0 76px;color:var(--dim);font-size:16px}
 </div></section>
 
 <section id="grade"><div class="wrap">
-  <h2>How I keep score honestly</h2>
-
-  <p>This is the part I would want someone to judge me on.</p>
-
-  <p>It is very easy to fool yourself with numbers. You try an idea, it works for a week, you decide
-  you are clever. So I built rules that stop me doing that — rules I cannot quietly bend later.</p>
+  <h2>Evaluation is part of the system</h2>
+  <p class="section-intro">A short run of good results can be misleading. The platform uses declared
+  review points, preserved records and comparisons against a reference to make decisions easier to audit.</p>
 
   <div class="cards">
     <div class="card"><b>Decide the test first</b><span>Before a new method is allowed to count, I write down how many games it has to be measured over and the date I will look. No peeking early.</span></div>
@@ -294,7 +373,7 @@ footer{padding:48px 0 76px;color:var(--dim);font-size:16px}
 
   <figure>
     <span class="shotlabel">The report card</span>
-    <img src="img_review.jpg" alt="Prospective review table scoring each model">
+    <img src="img_review.jpg" alt="Prospective review table scoring each model" width="2100" height="996" decoding="async" loading="lazy">
     <figcaption>Every method, scored: how far off on average, whether it leans high or low, and how it
     compares head-to-head with the favourite. "Warm-up" means it has not earned an opinion yet.
     <span class="tech">Technical: prospective review over independently settled games — total MAE,
@@ -304,7 +383,7 @@ footer{padding:48px 0 76px;color:var(--dim);font-size:16px}
 
   <figure>
     <span class="shotlabel">Six ways of combining opinions</span>
-    <img src="img_blends.jpg" alt="Blend lab showing six declared methods">
+    <img src="img_blends.jpg" alt="Blend lab showing six declared methods" width="2100" height="1130" decoding="async" loading="lazy">
     <figcaption>Six different recipes for mixing the methods together, each written down in advance
     with its own rule — and each one showing <em>why</em> it is holding back rather than silently
     producing a number.
@@ -314,25 +393,55 @@ footer{padding:48px 0 76px;color:var(--dim);font-size:16px}
     games at the same lead bucket.</span></figcaption>
   </figure>
 
-  <figure>
-    <span class="shotlabel">Where the data comes from — and what I refuse</span>
-    <img src="img_sources.jpg" alt="Source health page showing each data source and its access state">
-    <figcaption>Every source of data is listed with its status. Some say <em>blocked</em> or
-    <em>licence not verified</em> — those are switched off on purpose, even though the data would help,
-    because I have not confirmed I am allowed to use them. The page also records what each blocked
-    source <em>would</em> have added, so the decision stays visible.
-    <span class="tech">Technical: per-season canonical coverage (games, usable, held, blocked,
-    attempts) and per-source access state, with a stated scientific boundary — reused historical
-    blocks are diagnostic only and never feed a winning-model or betting-authority claim.</span></figcaption>
-  </figure>
+  <div class="source-overview" id="sources">
+    <h3>Know what the data can support</h3>
+    <p>Finding a source is only the first step. I record what it contributes, whether I can access
+    it and what still needs checking before it can be used.</p>
+    <div class="source-grid">
+      <div class="source-card">
+        <span class="status">EXISTING CONNECTIONS</span>
+        <strong>Keep the inputs traceable</strong>
+        <p>The source record identifies the existing game-event and market-data connections, along
+        with the information each provides.</p>
+      </div>
+      <div class="source-card">
+        <span class="status">REVIEW NEEDED</span>
+        <strong>Hold until checked</strong>
+        <p>Some historical and shot-quality data stays out while usage terms or licensing remain
+        unverified. Potential value is recorded separately from permission to use it.</p>
+      </div>
+      <div class="source-card">
+        <span class="status">UNAVAILABLE</span>
+        <strong>Show the missing pieces</strong>
+        <p>Premium feeds and raw tracking data have access limits. I document those gaps so the
+        system’s conclusions can be read with the limits in view.</p>
+      </div>
+    </div>
+    <p class="source-boundary"><strong>The evaluation limit:</strong> historical data can help
+    diagnose a result. It does not, by itself, prove that a method predicts future games well.</p>
+    <details>
+      <summary>View the original source-health dashboard</summary>
+      <div class="inner">
+        <p>The archived technical view records source-by-source access states and coverage. The
+        summary above explains the decisions without requiring you to read its tables.</p>
+        <p><a href="img_sources.jpg">Open the full-size dashboard image →</a></p>
+        <figure>
+          <img src="img_sources.jpg" alt="Archived source-health dashboard with connected feeds, sources awaiting terms or license review, unavailable feeds and historical-data evaluation limits" width="1700" height="909" decoding="async" loading="lazy">
+          <figcaption>Recorded dashboard evidence. Source states describe this capture, not a live
+          access check.</figcaption>
+        </figure>
+      </div>
+    </details>
+  </div>
 </div></section>
 
 <section id="broke"><div class="wrap">
-  <h2>Four times it broke, and what I did</h2>
-  <p>Anyone can show you a system on a good day. Here are the bad days.</p>
+  <h2>Incident investigations and operating decisions</h2>
+  <p class="section-intro">These cases show the work behind the dashboards: establish the symptom,
+  trace the cause, make a controlled change and verify the outcome.</p>
 
   <div class="story">
-    <h4>Everything looked fine. Nothing was fine.</h4>
+    <h3>Running services, missing output</h3>
     <p>The screen was green. Every program was running. But the machine had quietly stopped producing
     anything.</p>
     <p>I found it by asking a different question — not "is it running?" but "what should it have made
@@ -345,7 +454,7 @@ footer{padding:48px 0 76px;color:var(--dim);font-size:16px}
   </div>
 
   <div class="story">
-    <h4>Three days of silence — my own fault.</h4>
+    <h3>A code change triggered a silent safety hold</h3>
     <p>I edited one file. That file was being watched by a safety check, which noticed the change and
     refused to run — exactly as designed. But it refused <em>silently</em>, and everything downstream
     of it produced nothing for three days before I noticed.</p>
@@ -355,7 +464,7 @@ footer{padding:48px 0 76px;color:var(--dim);font-size:16px}
   </div>
 
   <div class="story">
-    <h4>A file quietly ate 122 gigabytes.</h4>
+    <h3>Recovering space without losing the recovery path</h3>
     <p>A log file had grown large enough to threaten the whole disk. The tempting move is to delete it
     immediately. Instead I worked out what recovery actually depended on, took a copy I had verified I
     could restore from, trimmed it to 36 GB, checked everything still opened — and only deleted the
@@ -364,7 +473,7 @@ footer{padding:48px 0 76px;color:var(--dim);font-size:16px}
   </div>
 
   <div class="story">
-    <h4>A part that had never once done its job.</h4>
+    <h3>Finding a workflow that never reached its inputs</h3>
     <p>I went looking for a component's track record and found it empty. Not bad — <em>empty</em>. For
     every game it had ever been scheduled for.</p>
     <p>Every stage was timing itself off when a game was <em>scheduled</em> to start rather than when
@@ -375,51 +484,55 @@ footer{padding:48px 0 76px;color:var(--dim);font-size:16px}
 </div></section>
 
 <section id="learned"><div class="wrap">
-  <h2>What a year of measuring taught me</h2>
+  <h2>What the evidence changed</h2>
 
   <ul>
-    <li><strong>I was more confident than I was right.</strong> When the machine said it was about 76%
-    sure, it was actually right about 49% of the time. The betting market, in the same spots, was
-    right 55%. That was humbling, and it is the single most useful thing I learned.</li>
-    <li><strong>Two guesses about the same team are not two guesses.</strong> When I predicted two
-    teammates would both do well, they succeeded together about 4% less often than the maths assumes
-    if you treat them as unrelated. So the rules now allow one pick per player.</li>
-    <li><strong>The opening worth having is speed, not genius.</strong> The clearest real advantage I
-    found is the short window where the posted odds have not yet caught up with what just happened in
-    the game. That is a timing and monitoring problem — which happens to be what I am good at.</li>
+    <li><strong>Confidence needs its own test.</strong> A forecast can sound precise and still be
+    poorly calibrated. I compare the stated confidence with settled results and keep the reference
+    result alongside it.</li>
+    <li><strong>Related inputs do not create independent evidence.</strong> Multiple observations
+    from one game can make a sample look larger than it is. The review process counts games once
+    and keeps related observations in context.</li>
+    <li><strong>Freshness is part of correctness.</strong> A plausible output can become misleading
+    when its feed is late. Timing, source health and missing-input checks belong beside the result.</li>
     <li><strong>Killing your own idea is a skill.</strong> I was convinced a certain gap in the data
     explained my errors. I tested it, then tested it again on more games, and it explained nothing. So
     I threw it away.</li>
   </ul>
 
   <div class="note">
-    <p><b>Where this stands, honestly.</b> I used AI assistance heavily to build this and I say so on
-    my resume. The architecture, the decisions about what to trust, and the rules that stop me fooling
-    myself are mine, and I can defend every one of them line by line.</p>
-    <p>My models do <em>not</em> reliably beat closing betting markets. Very little does — that market
-    is the most unforgiving scoreboard I could have picked, which is exactly why I picked it. The
-    thing worth noticing is that I can tell you so <em>with a number attached</em>, because every
-    output is graded against it and the record stands whether or not it flatters me. Most projects
-    like this quietly never find out. Mine is built so that it cannot avoid finding out.</p>
-    <p>So what I would bring to a team is not a formula. It is a year of running something real that
-    had to survive the night without me, held against the hardest benchmark available, and a
-    demonstrated willingness to throw away my own best ideas the moment the evidence stopped
-    supporting them. In an operations seat that habit is worth more than being clever.</p>
+    <p><b>Built with AI assistance.</b> I use AI heavily for implementation. I direct the architecture
+    and operating rules, investigate failures and verify changes through logs, replay and observed
+    output. The platform is an independent project I operate on my own machine.</p>
+    <p>The models have not demonstrated a reliable advantage over closing betting markets. The
+    evidence here is the operating work: making failures visible, preserving results, testing
+    assumptions and changing direction when the evidence calls for it.</p>
   </div>
-
-  <h3>Where this came from</h3>
-  <p>By day I am a Team Lead and Senior Integration &amp; Developer Support Analyst at Trimble, the
-  escalation point for a flagship enterprise customer. That job is making decisions on incomplete
-  information with a clock running, then being able to show your evidence afterwards. This project is
-  the same instinct, applied to a system where I own every layer.</p>
 </div></section>
+
+<section id="contact"><div class="wrap">
+  <h2>Let’s walk through a real problem</h2>
+  <p class="section-intro">If this work connects with your team, I’m happy to discuss an incident,
+  trace a workflow or explain the decisions behind the platform.</p>
+  <div class="contact-panel">
+    <h3>Start with the case that interests you</h3>
+    <p>Customer escalations, missing output, data quality or safe recovery: choose a starting point
+    and I can walk through the investigation and what changed.</p>
+    <div class="actions">
+      <a class="btn primary" href="mailto:jahvaredwards@gmail.com">Email Jahvar</a>
+      <a class="btn" href="https://www.linkedin.com/in/jahvar-edwards/">Connect on LinkedIn</a>
+    </div>
+    <p class="source-link"><a href="https://github.com/Cptvar/Cptvar.github.io">View this website’s source on GitHub</a>.
+    The repository contains this portfolio; the platform code is private.</p>
+  </div>
+</div></section>
+</main>
 
 <footer><div class="wrap">
   <p><strong>Jahvar Edwards</strong> · <a href="mailto:jahvaredwards@gmail.com">jahvaredwards@gmail.com</a>
   · 609-240-2409 · New Jersey ·
   <a href="https://www.linkedin.com/in/jahvar-edwards/">LinkedIn</a></p>
-  <p>Screens captured 24 November 2026. No passwords, addresses, supplier names or model internals are
-  shown. I am happy to walk through any part of this in detail.</p>
+  <p>Dashboard captures: 24 November 2026. These are recorded examples, rather than a live feed.</p>
 </div></footer>
 
 </body>
