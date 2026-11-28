@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Engineering Field Guide | Jahvar Edwards</title>
+  <meta name="description" content="A readable guide to the architecture, evidence, models, resource controls and recovery practices behind Jahvar Edwards’s four-sport data platform.">
+  <meta name="robots" content="noindex"><meta name="theme-color" content="#0b1015">
+  <meta property="og:title" content="Engineering Field Guide | Jahvar Edwards">
+  <meta property="og:description" content="From source observations to replayable records: the design choices behind an independent data platform.">
+  <meta property="og:type" content="article"><meta property="og:url" content="https://cptvar.github.io/engineering.html">
+  <link rel="stylesheet" href="styles.css"><script src="site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="site-nav" aria-label="Main navigation"><div class="wrap nav-inner">
+  <a class="brand" href="index.html">Jahvar Edwards<span> / Systems &amp; Operations</span></a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">Menu <span aria-hidden="true">☰</span></button>
+  <div class="nav-links" id="primary-navigation" data-open="false"><a href="index.html#how">Architecture tour</a><a href="index.html#see">Dashboards</a>
+    <a href="index.html#broke">Incidents</a><a href="engineering.html" aria-current="page">Engineering guide</a><a class="nav-contact" href="index.html#contact">Get in touch ↗</a></div>
+</div></nav>
+<main id="main" tabindex="-1">
+<header class="guide-header"><div class="wrap">
+  <a class="text-link" href="index.html">← Back to the portfolio</a>
+  <h1>The engineering field guide.</h1>
+  <p class="intro">A closer look at the systems, their organization and the decisions behind them.
+  Each topic starts with the practical idea before introducing the implementation detail.</p>
+  <p class="small">Published 27 November 2026 · Based on retained design and operating records · Independent, AI-assisted work</p>
+  <div class="actions"><button class="button" type="button" data-print>Print or save as PDF</button><a class="button" href="ARCHITECTURE.md">Read the architecture notes</a></div>
+</div></header>
+<div class="wrap guide-layout">
+  <aside class="guide-toc" aria-label="Guide contents"><strong>In this guide</strong>
+    <a href="#architecture">System overview</a><a href="#organization">Organization</a><a href="#inputs">Inputs and timing</a>
+    <a href="#evidence">Evidence and replay</a><a href="#coherence">Connected calculations</a><a href="#sports">The four sports</a>
+    <a href="#operations">Resources and scheduling</a><a href="#visibility">Visibility and alerts</a><a href="#changes">Change and recovery</a>
+    <a href="#research">Research and evaluation</a><a href="#boundaries">Ownership and limits</a><a href="#glossary">Plain-language glossary</a><a href="#references">Source basis</a>
+  </aside>
+  <div class="guide-content">
+    <section id="architecture"><span class="eyebrow">System overview</span><h2>From a changing input to an explainable result.</h2>
+      <p>The platform brings together separate NBA, NHL, NFL and MLB systems on a Windows workstation.
+      Python services, scheduled jobs and local dashboards support live observation and pregame research.
+      SQLite stores much of the retained evidence.</p>
+      <ol><li><strong>Collect and validate:</strong> gather source observations, identify what changed and check whether the input is usable.</li>
+        <li><strong>Preserve:</strong> retain the observation, relevant timing and calculation identity.</li>
+        <li><strong>Model and compare:</strong> run the sport’s calculations while keeping research methods distinct.</li>
+        <li><strong>Make visible:</strong> show estimates, input age, operating state and reasons for holds.</li>
+        <li><strong>Evaluate and recover:</strong> score later outcomes, investigate missing work and verify changes.</li></ol>
+      <p class="guide-note">This is a conceptual map of responsibilities. It is not a claim that the four
+      projects share one universal engine, identical controls or a single deployment process.</p>
+    </section>
+    <section id="organization"><h2>Give each responsibility a home.</h2>
+      <p>Separate sport projects retain their own services, data, operating commands and research modules.
+      The documented implementations distinguish collection, state construction, calculation, storage,
+      evaluation and presentation. That separation helps locate the cause of a failure.</p>
+      <dl><dt>Source and state</dt><dd>Adapters turn external records into sport-specific observations. Raw evidence and revisions provide a way to revisit the interpretation.</dd>
+        <dt>Calculation</dt><dd>Model and simulation code consumes identified inputs. Research modules remain separately named rather than silently replacing an established method.</dd>
+        <dt>Evidence and presentation</dt><dd>Databases and archived records preserve the calculation trail; dashboards read and explain that state.</dd>
+        <dt>Operations and change history</dt><dd>Launchers, health checks, release manifests, patch packages, verification records and rollback instructions explain how a system is run and changed.</dd></dl>
+      <p>Examples in the retained code include separate rotation, feature, kernel, pipeline, storage and
+      replay modules in NBA pregame work, and fit, simulation, coupling, scoring, storage and resource
+      modules in NFL pregame work. The public site describes those responsibilities without exposing the private repositories.</p>
+    </section>
+    <section id="inputs"><h2>A successful request is only the first check.</h2>
+      <p>A source can respond with an old observation, an unexpected shape or an unresolved player
+      identity. Collectors need bounded requests and explicit failure states; downstream work needs
+      eligibility checks of its own.</p>
+      <h3>Keep different clocks separate.</h3><p>An event’s game clock, a provider’s publication time,
+      local receipt, calculation time and forecast issue time describe different things. The documented
+      live services retain those distinctions where the source exposes them. An unknown source timestamp
+      stays unknown.</p>
+      <h3>Do not confuse a fresh fetch with fresh information.</h3><p>A newly received response can still
+      contain an unchanged price or delayed game state. An old forecast also needs its original state and
+      age shown, rather than appearing current because the dashboard refreshed.</p>
+      <h3>Bound the external dependency.</h3><p>Live-service designs use timeouts, response-size limits,
+      concurrency limits and backoff. Local paid-API ledgers reserve expected cost and reconcile provider
+      receipts. These local controls cannot account for every other process sharing the same provider account.</p>
+      <p><a href="index.html#sources">See the readable source-access example →</a></p>
+    </section>
+    <section id="evidence"><h2>Keep enough context to explain the result later.</h2>
+      <p>Documented live workflows retain source snapshots, model or code identity, relevant configuration,
+      observations and issued results. A later outcome or correction is another record, rather than a reason
+      to make the original forecast look better.</p>
+      <h3>Use clear database ownership.</h3><p>The live-service designs use SQLite write-ahead logging,
+      one owning writer and read-only dashboard connections. This separates observation and publication
+      from a view that merely needs to read the current state.</p>
+      <h3>Replay the calculation that actually ran.</h3><p>Replay uses retained inputs and the appropriate
+      calculation identity. Versioned source and locked numerical dependencies matter: running today’s
+      implementation on yesterday’s data is not automatically a replay of yesterday’s calculation.</p>
+      <h3>Understand what a replay proves.</h3><p>A matching replay supports reproducibility. It does not
+      prove that the input was complete, that all business assumptions were correct or that a prediction
+      was well calibrated. Coverage of the replay check itself also needs review.</p>
+      <p class="guide-note">A November 2026 audit found gaps as well as successful replay paths. The
+      portfolio presents these practices as implemented capabilities with explicit limits, not a claim
+      that every record and every module has complete replay coverage.</p>
+    </section>
+    <section id="coherence"><h2>Related outputs should come from related events.</h2>
+      <p>Generating every statistic independently can create a game that could not have happened.
+      Shared-path simulation creates a possible game sequence, then derives related outcomes from it.</p>
+      <div class="table-scroll"><table><caption class="small">Examples of documented consistency constraints</caption><thead><tr><th scope="col">System</th><th scope="col">What must stay connected</th></tr></thead><tbody>
+        <tr><th scope="row">NBA research</th><td>Shared rotations and team-minute constraints connect player opportunity with the lineup and game.</td></tr>
+        <tr><th scope="row">NHL live</th><td>Simulated player goals sum to the same team goals; a scorer cannot also assist their own goal.</td></tr>
+        <tr><th scope="row">NFL research</th><td>Shared play and opportunity calculations connect possession, passing, receiving and player roles.</td></tr>
+        <tr><th scope="row">MLB</th><td>Batter runs sum to simulated team score. Home runs do not exceed hits; total bases are at least hits.</td></tr>
+      </tbody></table></div>
+      <p>Consistency makes an output easier to reason about. It does not establish that the probabilities
+      assigned to those possible games are accurate.</p>
+    </section>
+    <section id="sports"><h2>Four sports require four kinds of state.</h2>
+      <h3 id="nba">NBA: live observation and pregame player opportunity.</h3>
+      <p>Live work combines scoreboards, box scores and play-by-play with changing score and clock state.
+      Separately, pregame research models availability, rotations and player opportunity. Shared lineup
+      paths and team-minute constraints help keep the player view connected to the team view.</p>
+      <p>Main and challenger methods remain identifiable. The pregame and live records have their own
+      eligibility and evaluation boundaries; a result in one is not qualification for the other.</p>
+      <h3 id="nhl">NHL: manpower, goalies and conserved opportunity.</h3>
+      <p>Hockey needs score, period, clock, shots, manpower and goalie context. The live extension uses
+      shared future paths for shots, goals and player opportunity. Pregame research also depends on
+      supported lineup and starter information.</p>
+      <p>Daily recovery work can quarantine affected games for specifically recognized input failures
+      while preserving the reason and incomplete denominator. Unexpected integrity failures still propagate.
+      A partial slate is not relabeled complete.</p>
+      <h3 id="nfl">NFL: possession, clock and player identity.</h3>
+      <p>Live football observation works with play-by-play, score, possession and time remaining.
+      Separate pregame joint research uses quarterback context, official inactive evidence and player
+      opportunity. Historical-situation and other challengers remain separately labeled.</p>
+      <p>The live-service design includes bounded supervisor recovery, a single owning writer and
+      uncertain notification states after interruption. Startup arrangements and coverage differ by
+      service; one running supervisor is not evidence that every component will recover after a reboot.</p>
+      <h3 id="mlb">MLB: one shared baseball game.</h3>
+      <p>The documented baseball architecture advances innings, batting half, outs, base occupancy,
+      score, batting order and pitcher workload together. Batter and pitcher outcomes are derived from
+      those shared events rather than unrelated draws.</p>
+      <p>The release record identifies an established decision model and a separate pitch-level
+      predictive candidate. Model promotion and permission to risk capital are distinct states; installation
+      and test success do not change that boundary. A native baseball dashboard capture is not included
+      in the current image set.</p>
+      <h3>Cross-sport views and scenario research.</h3>
+      <p>Research desks bring native sport outputs into a common review surface while retaining their
+      source identity. Scenario work explores changing availability, opportunity and game conditions.
+      Design documents describe more than the installed implementation: unfinished scenario features
+      are not presented here as completed capabilities.</p>
+      <p><a href="index.html#see">Explore the recorded dashboard views →</a></p>
+    </section>
+    <section id="operations"><h2>One workstation makes resource choices visible.</h2>
+      <p>Several useful jobs can still interfere with one another. The operating problem includes CPU,
+      memory, storage, query latency, request quotas and the time remaining before an output becomes stale.</p>
+      <ul><li><strong>Bound work:</strong> use limited workers, calculation slots, request timeouts and explicit runtime budgets.</li>
+        <li><strong>Keep research from crowding active work:</strong> background and shadow jobs need lower-priority or off-slate handling when resource pressure affects the active pipelines.</li>
+        <li><strong>Make holds specific:</strong> storage pressure, exhausted quota, missing data and a stalled job are different operating states.</li>
+        <li><strong>Watch actual output:</strong> a scheduled job can run successfully without producing its intended records.</li>
+        <li><strong>Do not hide a backlog:</strong> an old calculation should not be represented as current merely because it completed recently.</li></ul>
+      <p>Scheduling is primarily Windows-based, with long-running services where appropriate. The host
+      must be awake for collection. This is not a multi-host high-availability deployment, and there is
+      no published uptime service-level guarantee.</p>
+      <p><a href="index.html#case-output">Read the resource-contention investigation →</a></p>
+    </section>
+    <section id="visibility"><h2>Explain the state before asking for action.</h2>
+      <p>A useful dashboard connects the estimate with the state of the system producing it. A useful
+      alert identifies whether the next action belongs to the operator, the source or a deliberate hold.</p>
+      <p>The documented live designs keep an outbox for eligible research notifications, apply validity
+      and expiry checks and distinguish uncertain submissions after interruption. Provider acceptance
+      does not prove delivery to a device, a read receipt or an executed transaction.</p>
+      <p>Private dashboard access supports review away from the desk. This public website contains
+      selected recorded captures; it does not expose the internal dashboards or operate the machines.</p>
+    </section>
+    <section id="changes"><h2>A change should come with its recovery story.</h2>
+      <p>The retained projects include version and source identity checks, staged verification, backups,
+      patch packages and revert paths. Model-affecting changes are planned rather than treated as ordinary
+      dashboard edits.</p>
+      <ol><li><strong>Establish the starting point.</strong> Identify the source and configuration being changed, its dependencies and the relevant operating window.</li>
+        <li><strong>Preserve recovery.</strong> Keep a verified snapshot or backup before a change that depends on it.</li>
+        <li><strong>Check the intended behavior.</strong> Use suitable fixtures, replay, database checks and observed output.</li>
+        <li><strong>Verify the deployed result.</strong> A successful installer or green process alone does not establish correct operation.</li>
+        <li><strong>Retire the old recovery point deliberately.</strong> Clean up after verification, rather than removing the fallback under pressure.</li></ol>
+      <p>The MLB release notes describe a staged test gate and a re-hashed local database snapshot for
+      transactional recovery. That is an example of a specific implementation—not a guarantee that every
+      project uses the same installer.</p>
+      <p><a href="index.html#case-storage">Read the database-journal recovery case →</a></p>
+    </section>
+    <section id="research"><h2>Measurement has its own architecture.</h2>
+      <p>A model needs a declared reference and an eligible record. The documented workflows use
+      prospective review points, distinct model identities and retained outcomes to separate investigation
+      from evidence that can support a promotion decision.</p>
+      <dl><dt>As-of inputs</dt><dd>Use information available when the decision was issued. A later correction must not silently become an earlier input.</dd>
+        <dt>Whole-game context</dt><dd>Several forecasts from one game are related observations. They do not create several independent games.</dd>
+        <dt>Separate error types</dt><dd>Numerical simulation error differs from model uncertainty, missing inputs and structural assumptions.</dd>
+        <dt>Keep failures and abstentions visible</dt><dd>A method that only produces output on easy cases needs its coverage reported alongside its scores.</dd>
+        <dt>Explicit promotion</dt><dd>A favorable diagnostic, an installed candidate or a successful replay does not automatically replace the established model.</dd></dl>
+      <p>Audits have identified timing, coverage and lifecycle gaps in parts of the research machinery.
+      These are reasons to improve the checks, rather than claims that a frozen protocol makes mistakes impossible.</p>
+      <p><a href="index.html#grade">Return to the evaluation overview →</a></p>
+    </section>
+    <section id="boundaries"><h2>Be precise about ownership and maturity.</h2>
+      <p><strong>My role:</strong> I direct architecture, priorities and operating rules; investigate
+      failures; and verify changes. I use AI heavily for implementation. The work is not presented as
+      unaided authorship of every line of code.</p>
+      <p><strong>What is demonstrated:</strong> documented systems, original dashboard captures,
+      operating practices, investigation records and specific verification paths. The site explains
+      the strongest evidence without claiming that every component is complete or defect-free.</p>
+      <p><strong>What is not established:</strong> a reliable advantage over closing betting markets,
+      a profitable strategy, universal empirical calibration, guaranteed uptime or a fully automated
+      system that needs no operator.</p>
+      <p><strong>Professional context:</strong> my customer-facing enterprise support work adds
+      escalation ownership, clear communication and coordination with Product and Engineering.
+      The platform provides an independent setting for end-to-end systems investigation.</p>
+      <p><strong>Public scope:</strong> this repository contains the portfolio, curated architecture
+      notes and recorded images. It is not the source repository for the underlying sports platform.</p>
+    </section>
+    <section id="glossary"><h2>The terms, without the shorthand.</h2>
+      <dl><dt>Collector</dt><dd>A program that retrieves and records information from a source.</dd>
+        <dt>State</dt><dd>The information describing a game or system at a particular point in time.</dd>
+        <dt>Provenance</dt><dd>The record of where information came from and which calculation used it.</dd>
+        <dt>Replay</dt><dd>Re-running a retained calculation with the appropriate original inputs and implementation.</dd>
+        <dt>Shared-path simulation</dt><dd>Generating related outcomes from the same possible sequence of game events.</dd>
+        <dt>Monte Carlo error</dt><dd>Numerical variation from using a finite set of simulated outcomes. Reducing it does not correct a flawed model.</dd>
+        <dt>Calibration</dt><dd>Whether events assigned a particular probability happen about that often over a suitable sample.</dd>
+        <dt>Challenger or shadow model</dt><dd>A separately identified method evaluated alongside an established method without automatically replacing it.</dd>
+        <dt>Prospective evaluation</dt><dd>Defining a test before the eligible future outcomes are known.</dd>
+        <dt>Fail closed</dt><dd>Hold an output when required checks are missing or fail, instead of assuming it is safe to continue.</dd>
+        <dt>Write-ahead log, or WAL</dt><dd>A database mechanism that records changes before merging them into the main database file.</dd>
+        <dt>Rollback</dt><dd>A planned route back to a known earlier state after a change.</dd></dl>
+    </section>
+    <section id="references"><h2>What this guide is based on.</h2>
+      <p>The public explanations were checked against local project records on 27 November 2026.
+      They are curated descriptions, not an export of the private systems. The source basis includes:</p>
+      <ul><li><strong>NBA:</strong> the project README, model-and-operations notes, and the pregame rotation module structure.</li>
+        <li><strong>NHL:</strong> continuous-live documentation and daily-recovery notes describing quarantine and preserved failure states.</li>
+        <li><strong>NFL:</strong> live-observer documentation and the pregame joint module structure.</li>
+        <li><strong>MLB:</strong> shared-game architecture notes and the release-status record distinguishing established and candidate models.</li>
+        <li><strong>Cross-system operation:</strong> the 20 November audit, 24 November incident notes and 27 November handoff.</li>
+        <li><strong>Visual evidence:</strong> ten existing dashboard captures collected on 24 November. Data shown within a capture may have an earlier timestamp.</li></ul>
+      <p>No live paid-feed requests, new model benchmarks or operational changes were performed to
+      produce this portfolio. Historical incident measurements retain their original scope; they are
+      not refreshed performance claims. Sealed prospective outcomes are not reported here.</p>
+      <p><a href="ARCHITECTURE.md">Public architecture notes</a> · <a href="https://github.com/Cptvar/Cptvar.github.io">Website source</a> · <a href="index.html#see">Recorded dashboards</a> · <a href="index.html#contact">Discuss a specific example</a></p>
+    </section>
+  </div>
+</div>
+</main>
+<footer><div class="wrap"><p>Jahvar Edwards · Independent, AI-assisted platform work.<br>Engineering descriptions reviewed 27 November 2026.</p><a href="index.html">Return to the portfolio →</a></div></footer>
+</body>
+</html>

@@ -1,539 +1,278 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jahvar Edwards | Technical Support and Platform Operations</title>
-<meta name="description" content="Enterprise integration support and an independently operated, AI-assisted sports-data platform. Explore real dashboards, incident investigations and architecture.">
-<meta name="robots" content="noindex">
-<meta name="theme-color" content="#0b0e13">
-<meta property="og:title" content="Jahvar Edwards | Technical Support and Platform Operations">
-<meta property="og:description" content="Enterprise support, AI-assisted systems and incident investigation, with real dashboard examples.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://cptvar.github.io/">
-<style>
-:root{
-  --bg:#0b0e13; --bg2:#101620; --panel:#151c27; --line:#232c3a; --line2:#334155;
-  --ink:#eaf1f8; --dim:#9fadbd; --accent:#6ee7a0; --accent2:#61b3ff; --warn:#f5b96b;
-  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-section,header{scroll-margin-top:78px}
-body{margin:0;background:var(--bg);color:var(--ink);
-  font:18px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  -webkit-font-smoothing:antialiased}
-a{color:var(--accent)}
-a:focus-visible,summary:focus-visible{outline:3px solid var(--accent2);outline-offset:5px;border-radius:3px}
-.skip{position:fixed;left:16px;top:-80px;z-index:100;padding:10px 16px;background:var(--ink);color:var(--bg)}
-.skip:focus{top:10px}
-.wrap{max-width:860px;margin:0 auto;padding:0 22px}
-
-nav{position:sticky;top:0;z-index:50;background:rgba(11,14,19,.88);backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;gap:20px;height:56px;overflow-x:auto;max-width:980px}
-nav .me{font-weight:700;white-space:nowrap}
-nav a{color:var(--dim);text-decoration:none;font-size:15px;white-space:nowrap;padding:10px 0}
-nav a:hover{color:var(--ink)}
-
-header{padding:70px 0 52px;
-  background:radial-gradient(900px 360px at 15% -10%, rgba(110,231,160,.10), transparent 70%)}
-.kicker{font:700 13px/1 var(--mono);letter-spacing:2.4px;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
-h1{font-size:clamp(36px,5vw,58px);line-height:1.08;margin:0 0 22px;letter-spacing:-1.5px;max-width:18ch}
-.big{font-size:21px;line-height:1.65;color:var(--ink);max-width:62ch;margin:0 0 16px}
-.tagline{font-size:18px;color:var(--dim);max-width:64ch;margin:0 0 28px}
-.actions{display:flex;flex-wrap:wrap;gap:10px}
-.btn{display:inline-block;padding:11px 18px;border-radius:8px;text-decoration:none;font-size:15px;font-weight:600;
-  border:1px solid var(--line2);color:var(--ink);background:var(--panel)}
-.btn.primary{background:var(--accent);color:#06240f;border-color:var(--accent)}
-.btn:hover{border-color:var(--accent)}
-.hero-grid{max-width:1180px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:42px;align-items:center}
-.hero-grid .big{font-size:20px;line-height:1.6}
-.hero-grid .kicker{font-size:11px;letter-spacing:1.7px;line-height:1.6}
-.hero-evidence{min-width:0;margin:0;border:1px solid var(--line2);border-radius:14px;background:var(--panel);overflow:hidden;box-shadow:0 24px 70px #0003}
-.hero-evidence .evidence-label{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;font:12px/1.5 var(--mono);color:var(--dim);border-bottom:1px solid var(--line)}
-.hero-evidence .evidence-label b{color:var(--accent);font-weight:600}
-.hero-evidence img{border:0;border-radius:0;width:100%;display:block;height:auto}
-.hero-evidence figcaption{padding:16px 18px;margin:0;font-size:15px;line-height:1.6}
-.hero-evidence figcaption a{display:inline-block;margin-top:6px;font-weight:600;text-decoration:none}
-.ownership{font-size:14px;line-height:1.6;color:var(--dim);margin:20px 0 0}
-.section-intro{color:var(--dim);font-size:18px}
-.role-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
-.role-card{border-top:2px solid var(--accent);padding:18px 0 0}
-.role-card h3{margin:0 0 10px;font-size:18px;line-height:1.4}
-.role-card p{font-size:16px;line-height:1.65;color:var(--dim);margin-bottom:14px}
-.role-card a{font-size:15px;font-weight:600;text-decoration:none}
-.proof-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0 0;padding:0;list-style:none;max-width:none}
-.proof-list li{margin:0;padding:15px 16px;border:1px solid var(--line);border-radius:8px;font-size:15px;line-height:1.5;color:var(--dim)}
-.proof-list strong{display:block;color:var(--ink);margin-bottom:5px}
-.contact-panel{border:1px solid var(--line2);border-radius:12px;padding:28px;background:var(--panel);margin-top:30px}
-.contact-panel h3{margin:0 0 12px;font-size:23px}
-.contact-panel p{font-size:17px;color:var(--dim)}
-.source-link{font-size:14px;margin-top:16px}
-.source-overview{margin:38px 0 0;padding-top:30px;border-top:1px solid var(--line2)}
-.source-overview h3{font-size:24px;line-height:1.3;margin:0 0 12px;letter-spacing:-.3px}
-.source-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:24px 0}
-.source-card{border:1px solid var(--line2);border-radius:10px;padding:20px;background:var(--panel)}
-.source-card .status{display:block;font:600 12px/1.4 var(--mono);letter-spacing:.5px;margin-bottom:12px;color:var(--accent2)}
-.source-card strong{display:block;font-size:18px;line-height:1.4;margin-bottom:10px}
-.source-card p{font-size:16px;line-height:1.65;color:var(--dim);margin:0}
-.source-boundary{font-size:16px;line-height:1.65;border-left:3px solid var(--accent);padding-left:16px;color:var(--dim)}
-.source-overview details{max-width:none;margin-top:24px}
-.source-overview figure{margin:16px 0 4px}
-.source-overview figcaption{font-size:14px;color:var(--dim)}
-
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:1px;background:var(--line);
-  border-block:1px solid var(--line);max-width:980px;margin:0 auto}
-.stat{background:var(--bg2);padding:22px 20px}
-.stat b{display:block;font:800 27px/1.1 var(--mono);letter-spacing:-1px}
-.stat span{display:block;font-size:14px;color:var(--dim);margin-top:7px;line-height:1.5}
-
-section{padding:66px 0;border-bottom:1px solid var(--line)}
-section:last-of-type{border-bottom:0}
-h2{font-size:30px;margin:0 0 14px;letter-spacing:-.8px;line-height:1.2}
-h3{font-size:20px;margin:40px 0 10px}
-p{margin:0 0 18px;max-width:64ch}
-ul{margin:0 0 18px;padding-left:22px;max-width:64ch}
-li{margin-bottom:11px}
-
-/* plain-language callout */
-.plain{border-left:3px solid var(--accent);background:var(--panel);border-radius:0 9px 9px 0;
-  padding:18px 22px;margin:22px 0;max-width:64ch}
-.plain b{color:var(--accent);display:block;font-size:14px;letter-spacing:.6px;text-transform:uppercase;
-  font-family:var(--mono);margin-bottom:8px}
-.plain p{margin:0;font-size:18px}
-
-/* steps */
-.steps{counter-reset:s;margin:28px 0}
-.step{counter-increment:s;position:relative;padding:0 0 26px 66px;border-left:2px solid var(--line2);
-  margin-left:20px}
-.step:last-child{border-left-color:transparent;padding-bottom:0}
-.step::before{content:counter(s);position:absolute;left:-21px;top:-4px;width:40px;height:40px;border-radius:50%;
-  background:var(--panel);border:2px solid var(--accent);color:var(--accent);
-  font:700 18px/36px var(--mono);text-align:center}
-.step h3{margin:0 0 6px;font-size:19px}
-.step p{margin:0;color:var(--dim);font-size:17px}
-
-details{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:0;margin:18px 0;max-width:64ch}
-summary{cursor:pointer;padding:13px 18px;font-size:15px;color:var(--accent2);font-weight:600;list-style:none}
-summary::-webkit-details-marker{display:none}
-summary::before{content:"▸ ";font-size:13px}
-details[open] summary::before{content:"▾ "}
-details .inner{padding:0 18px 16px;font-size:16px;color:var(--dim);line-height:1.7}
-details .inner p{max-width:none;margin:0 0 12px}
-details .inner p:last-child{margin:0}
-
-figure{margin:30px 0 38px}
-figure img{width:100%;height:auto;border:1px solid var(--line2);border-radius:10px;display:block;background:var(--bg2)}
-figcaption{font-size:17px;color:var(--ink);margin-top:14px;max-width:72ch}
-figcaption .tech{display:block;font-size:15px;color:var(--dim);margin-top:8px}
-.shotlabel{font:700 12.5px/1 var(--mono);letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);
-  margin-bottom:10px;display:block}
-
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:26px 0}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
-.card b{display:block;font-size:17px;margin-bottom:7px}
-.card span{font-size:16px;color:var(--dim);line-height:1.6}
-
-.story{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:20px 0;max-width:68ch}
-.story h3{margin:0 0 10px;font-size:19px}
-.story p{margin:0 0 12px;font-size:17px}
-.story p:last-child{margin:0}
-.story .lesson{color:var(--accent);font-weight:600}
-
-.note{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--warn);
-  border-radius:0 10px 10px 0;padding:22px 24px;margin:32px 0;max-width:68ch}
-.note b{color:var(--warn)}
-
-footer{padding:48px 0 76px;color:var(--dim);font-size:16px}
-
-@media (prefers-color-scheme: light){
-  :root{--bg:#fff;--bg2:#f7f9fc;--panel:#f3f6fa;--line:#e2e8f0;--line2:#cbd5e1;
-        --ink:#131920;--dim:#55606d;--accent:#0f7a46;--accent2:#1263c4;--warn:#92610f}
-  nav{background:rgba(255,255,255,.92)}
-  .btn.primary{color:#fff}
-  header{background:radial-gradient(900px 360px at 15% -10%, rgba(15,122,70,.07), transparent 70%)}
-}
-@media(max-width:620px){
-  body{font-size:17px}
-  .step{padding-left:58px}
-  header{padding-top:42px}
-  .hero-grid{gap:28px}
-  .hero-grid .big{font-size:18px}
-  h1{font-size:40px;letter-spacing:-1px}
-  h2{font-size:27px}
-  .role-grid,.proof-list,.source-grid{grid-template-columns:1fr}
-  .contact-panel{padding:22px}
-  nav .wrap{gap:16px}
-  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media(max-width:900px){.hero-grid{grid-template-columns:1fr;max-width:860px}.hero-evidence{max-width:620px}.role-grid{gap:22px}}
-@media(max-width:760px){.source-grid{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-@media print{nav,.skip,.hero-evidence{display:none}body{background:#fff;color:#111;font-size:11pt}.wrap{max-width:none}header,section,footer{padding:16px 0}.role-grid,.proof-list{display:block}a{color:#111}.story,figure{break-inside:avoid}.section-intro,.tagline,.ownership,.role-card p{color:#333}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jahvar Edwards | Systems, Evidence &amp; Operations</title>
+  <meta name="description" content="Inside Jahvar Edwards’s AI-assisted, four-sport data platform: connected architecture, replayable evidence, thoughtful operations and real incident investigations.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0b1015">
+  <meta property="og:title" content="Jahvar Edwards | Systems, Evidence &amp; Operations">
+  <meta property="og:description" content="Four sports. Connected systems. Explore the architecture, dashboards and decisions behind an independently operated data platform.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cptvar.github.io/">
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-
-<nav aria-label="Portfolio sections"><div class="wrap">
-  <a class="me" href="#main">Jahvar Edwards</a>
-  <a href="#fit">Experience</a>
-  <a href="#how">Architecture</a>
-  <a href="#see">Dashboards</a>
-  <a href="#broke">Incident stories</a>
-  <a href="#contact">Contact</a>
-</div></nav>
-
-<main id="main" tabindex="-1">
-<header><div class="wrap hero-grid">
- <div>
-  <div class="kicker">Enterprise integration support · Independent platform operations</div>
-  <h1>I troubleshoot the whole system.</h1>
-  <p class="big">I’m Jahvar Edwards, a Team Lead and Senior Integration &amp; Developer Support
-  Analyst. I investigate complex customer issues across APIs, logs and databases, then work with
-  Product and Engineering to reach a resolution.</p>
-  <p class="tagline">Outside work, I direct and operate an AI-assisted data platform across four
-  sports. It gives me a place to put that same judgment into practice: monitor the inputs, trace
-  failures and verify what the system actually produces.</p>
-  <div class="actions">
-    <a class="btn primary" href="#broke">Read an incident</a>
-    <a class="btn" href="#see">Explore the dashboards</a>
+<nav class="site-nav" aria-label="Main navigation"><div class="wrap nav-inner">
+  <a class="brand" href="#main">Jahvar Edwards<span> / Systems &amp; Operations</span></a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">Menu <span aria-hidden="true">☰</span></button>
+  <div class="nav-links" id="primary-navigation" data-open="false">
+    <a href="#how">Architecture</a><a href="#see">Dashboards</a><a href="#broke">Incidents</a>
+    <a href="engineering.html">Engineering guide</a><a class="nav-contact" href="#contact">Get in touch ↗</a>
   </div>
-  <p class="ownership">Personally directed and operated · AI-assisted build · New Jersey, US</p>
- </div>
- <figure class="hero-evidence">
-  <div class="evidence-label"><b>Inside the platform</b><span>Recorded dashboard</span></div>
-  <a href="#see" aria-label="Explore the platform dashboard examples"><img src="img_dash.jpg" alt="Hockey dashboard showing multiple game forecasts and feed health indicators" fetchpriority="high" width="2100" height="982" decoding="async"></a>
-  <figcaption>Game data, model outputs and feed health in one operating view.
-  <br><a href="#how">See how the pieces connect →</a></figcaption>
- </figure>
+</div></nav>
+<main id="main" tabindex="-1">
+<header class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="eyebrow">An independent, AI-assisted engineering portfolio</span>
+    <h1>Live data.<br>Connected systems.<br><span>Traceable decisions.</span></h1>
+    <p class="lead">I’m Jahvar Edwards. I direct and operate a data platform across basketball,
+    hockey, football and baseball—bringing live feeds, models, dashboards and operating controls
+    together on one Windows workstation.</p>
+    <div class="actions"><a class="button primary" href="#how">Explore the system <span aria-hidden="true">↓</span></a>
+      <a class="button" href="#see">See real dashboards</a></div>
+    <p class="hero-note">By profession: Team Lead and Senior Integration &amp; Developer Support Analyst.
+    Here: the systems I operate, the decisions I make and the evidence I keep.</p>
+  </div>
+  <div class="system-cover" role="img" aria-label="Conceptual platform overview: NBA, NHL, NFL and MLB feeds connect to sport-specific models, retained evidence, dashboards and operating checks.">
+    <div class="cover-heading"><strong>THE PLATFORM, AT A GLANCE</strong><span>Conceptual view</span></div>
+    <div class="cover-body">
+      <div class="league-pills" aria-hidden="true"><span>NBA</span><span>NHL</span><span>NFL</span><span>MLB</span></div>
+      <div class="cover-rail" aria-hidden="true">
+        <div class="cover-node"><strong>Observe</strong><span>Game events · availability · market inputs</span></div>
+        <div class="cover-node"><strong>Interpret</strong><span>Sport-specific models · research comparisons</span></div>
+        <div class="cover-node"><strong>Preserve</strong><span>Input snapshots · versions · outcome records</span></div>
+        <div class="cover-node"><strong>Operate</strong><span>Dashboards · checks · alerts · recovery</span></div>
+      </div>
+    </div>
+    <div class="cover-footer">The useful question: can I explain where this output came from?</div>
+  </div>
 </div></header>
-
-<div class="stats">
-  <div class="stat"><b>4 sports</b><span>NBA, NHL, NFL and MLB workflows</span></div>
-  <div class="stat"><b>2026</b><span>independent platform work began</span></div>
-  <div class="stat"><b>1 operator</b><span>I direct, investigate and maintain it</span></div>
-  <div class="stat"><b>Real cases</b><span>documented failures and operating decisions</span></div>
+<div class="wrap">
+  <div class="foundation" aria-label="Platform foundations">
+    <div><b>Four sports</b><span>Different game mechanics and data needs</span></div>
+    <div><b>One workstation</b><span>Python services and Windows scheduling</span></div>
+    <div><b>Retained evidence</b><span>SQLite records, source identity and replay</span></div>
+    <div><b>Human judgment</b><span>AI-assisted implementation; explicit review</span></div>
+  </div>
+  <div class="tour-links" aria-label="Choose a reading path">
+    <a href="#what">New to the project? Start with the quick tour →</a>
+    <a href="engineering.html">Want implementation detail? Read the guide →</a>
+    <a href="#fit">Looking at team fit? See my experience →</a>
+  </div>
 </div>
 
-<section id="fit"><div class="wrap">
-  <h2>How this translates to a team</h2>
-  <p class="section-intro">My day job provides the customer and escalation experience. The platform
-  shows how I apply it when I own the system and the investigation.</p>
-  <div class="role-grid">
-    <article class="role-card"><h3>Technical and integration support</h3>
-      <p>Work through APIs, authentication, logs and data to explain a failure. Give engineering a
-      reproducible case and keep the customer informed through resolution.</p>
-      <a href="#broke">Read a root-cause investigation →</a></article>
-    <article class="role-card"><h3>Platform and NOC operations</h3>
-      <p>Watch for missing output as well as stopped processes. Use monitoring, runbooks, backups and
-      replay checks to make changes with a clear recovery path.</p>
-      <a href="#how">Follow the operating workflow →</a></article>
-    <article class="role-card"><h3>Data and live sports operations</h3>
-      <p>Trace a forecast to its inputs, account for changing availability and preserve the record
-      needed to evaluate it. Make uncertainty visible before it becomes a confident answer.</p>
-      <a href="#grade">Explore the evaluation process →</a></article>
+<section id="what"><div class="wrap split">
+  <div><span class="eyebrow">01 / The quick tour</span><h2>A changing game is a systems problem.</h2>
+    <p class="intro">A late player scratch changes the inputs. A delayed feed changes what I can trust.
+    A stopped job changes what the dashboard should show. The platform makes those relationships
+    visible, so I can investigate the whole chain.</p>
+    <a class="text-link" href="#sports">See what differs across the four sports →</a>
   </div>
-  <ul class="proof-list">
-    <li><strong>Enterprise experience</strong>Trimble support since 2022; promoted to Team Lead and Senior Analyst in November 2026.</li>
-    <li><strong>Functional leadership</strong>Guide 3–4 analysts on a flagship enterprise customer’s cases, alongside hands-on investigation.</li>
-    <li><strong>Recognized improvement</strong>Trimble T&amp;L MVP, Innovate, Q2 2025, for support playbooks and operational improvements.</li>
-  </ul>
-</div></section>
-
-<section id="what"><div class="wrap">
-  <h2>A live data platform, explained simply</h2>
-  <p>The platform collects game events, player availability and market data across basketball,
-  hockey, football and baseball. It uses several methods to estimate what may happen next, saves
-  their predictions and compares them with the eventual results.</p>
-  <p>For example, a late player scratch changes the inputs. A delayed feed can make a plausible
-  forecast out of date. The work is understanding those dependencies and showing when an output
-  needs more evidence.</p>
-
-  <div class="plain">
-    <b>The operating principle</b>
-    <p>A running process is only the beginning. I check whether the expected output arrived, whether
-    its inputs were usable and whether its result can be evaluated afterwards.</p>
+  <div class="explain">
+    <p><strong>In plain language:</strong> it watches games, estimates what may happen next, saves
+    what it knew at the time and checks the result afterwards.</p>
+    <p>Underneath, it needs the same practical care as any connected system: reliable inputs,
+    clear ownership, useful monitoring and a way to recover.</p>
+    <div class="example">For example, a changed lineup can require a new forecast. If the required
+    confirmation is missing, a visible hold is more useful than a plausible but unsupported number.</div>
   </div>
-
-  <p>The platform also runs scheduled work unattended. Health checks and phone alerts help surface
-  stale feeds, stalled jobs and resource constraints so I can investigate the part that needs attention.</p>
-
-  <p>And when it cannot trust what it is being told, it stops. A machine that confidently prints a
-  wrong number is worse than one that says nothing.</p>
-
-  <details><summary>For the technical reader</summary>
-    <div class="inner">
-      <p>Four sport-specific systems (NBA, NHL, NFL, MLB) on one Windows host, using scheduled jobs and
-      long-running collector and scoring services. Ingest covers play-by-play, box scores, injuries,
-      rosters and confirmed lineups, plus paid and free odds — paid pulls metered against a per-day
-      credit budget with a usage ledger. Storage is SQLite with WAL, scheduled checkpoints, index
-      tuning and archival.</p>
-      <p>Each sport runs a Main model plus challengers — score-state win probability, Poisson goal
-      models, drive simulation, four-factor and shot-rate × shot-quality structural blends, and
-      period/quarter/half panels. Guards fail closed on malformed vendor data. Operations: health
-      checks per job, resource and storage ceilings, push alerts, written runbooks, staged installs
-      with tested rollback, nightly golden-case replays.</p>
-    </div>
-  </details>
 </div></section>
 
 <section id="how"><div class="wrap">
-  <h2>From changing inputs to a checked result</h2>
-  <p class="section-intro">Five connected stages. Each needs a clear input, a useful output and a way
-  to notice when something is missing.</p>
-
-  <div class="steps">
-    <div class="step">
-      <h3>It collects</h3>
-      <p>Collectors gather game events, player status and prices on their own schedules. Source
-      freshness and paid API budgets are part of the operating checks.</p>
-    </div>
-    <div class="step">
-      <h3>It remembers</h3>
-      <p>SQLite records preserve inputs, predictions and outcomes. Keeping the earlier record makes
-      it possible to investigate an output and evaluate a method without rewriting its history.</p>
-    </div>
-    <div class="step">
-      <h3>It compares several methods</h3>
-      <p>A reference model and challenger methods run alongside one another. Differences between
-      them remain visible, with availability and uncertainty affecting how an output is interpreted.</p>
-    </div>
-    <div class="step">
-      <h3>It grades itself</h3>
-      <p>Settled results support checks of forecast error, bias and uncertainty. Review points are
-      defined in advance, and a promising challenger does not automatically replace the reference.</p>
-    </div>
-    <div class="step">
-      <h3>It holds outputs that need more evidence</h3>
-      <p>Guards can hold an output when required inputs or validation checks are missing. Operating
-      alerts help separate a deliberate hold from a service that has stopped doing its job.</p>
+  <span class="eyebrow">02 / Connected architecture</span><h2>Follow the life of an output.</h2>
+  <p class="intro">Five responsibilities connect the platform. Select a stage to see what it does,
+  why it matters and what I check. This is a simplified map of the documented workflows.</p>
+  <ol class="architecture-controls" aria-label="Explore architecture stages">
+    <li><button class="stage-button" type="button" data-stage="collect" aria-pressed="true" aria-controls="architecture-detail"><span class="num">01 →</span><strong>Collect &amp; validate</strong></button></li>
+    <li><button class="stage-button" type="button" data-stage="preserve" aria-pressed="false" aria-controls="architecture-detail"><span class="num">02 →</span><strong>Preserve the evidence</strong></button></li>
+    <li><button class="stage-button" type="button" data-stage="model" aria-pressed="false" aria-controls="architecture-detail"><span class="num">03 →</span><strong>Model &amp; compare</strong></button></li>
+    <li><button class="stage-button" type="button" data-stage="publish" aria-pressed="false" aria-controls="architecture-detail"><span class="num">04 →</span><strong>Make it visible</strong></button></li>
+    <li><button class="stage-button" type="button" data-stage="review" aria-pressed="false" aria-controls="architecture-detail"><span class="num">05 ↺</span><strong>Evaluate &amp; recover</strong></button></li>
+  </ol>
+  <div id="architecture-detail" class="architecture-panel" aria-live="polite" aria-atomic="true">
+    <div><span class="eyebrow" id="stage-label">01 / Inputs</span><h3 id="stage-title">Collect what changed. Check what arrived.</h3>
+      <p id="stage-copy">Scheduled jobs and long-running collectors gather game events, player status and market observations. A response arriving does not automatically make it usable.</p>
+      <a class="text-link" id="stage-link" href="engineering.html#inputs">Read the input design →</a></div>
+    <ul id="stage-checks"><li>Validate source shape, identities and available timestamps.</li><li>Track freshness and distinguish an unchanged feed from a new event.</li><li>Bound paid requests with local credit budgets and usage records.</li></ul>
+  </div>
+  <noscript><p class="no-script">The interactive tour needs JavaScript. The <a href="engineering.html#architecture">engineering guide explains all five stages</a>.</p></noscript>
+  <p class="architecture-note">The stages describe responsibilities, not a single shared executable. Each sport has its own services and operating boundaries.</p>
+  <div class="organization">
+    <div><h3>Organization is part of the engineering.</h3>
+      <p>Sport-specific projects keep their own data, models and operating commands. Within them,
+      collection, calculation, storage, evaluation and presentation have distinct responsibilities.</p>
+      <p>Research stays identifiable beside the established path. Releases, patch packages,
+      verification records and recovery instructions make change history understandable.</p>
+      <a class="text-link" href="engineering.html#organization">Explore the project structure →</a></div>
+    <div class="tree" aria-label="Conceptual organization, not an exact directory listing">
+      <span class="tree-group"><strong>Sport-specific systems</strong><span>NBA · NHL · NFL · MLB</span></span>
+      <span class="tree-group"><strong>Within each system</strong><span>Sources → state → models → views</span><span>Evidence → replay → evaluation</span></span>
+      <span class="tree-group"><strong>Operating practices</strong><span>Health checks · budgets · backups</span><span>Release identity · patches · rollback</span></span>
+      <span class="small">Conceptual organization, simplified for this portfolio.</span>
     </div>
   </div>
+</div></section>
 
-  <div class="plain">
-    <b>What I own</b>
-    <p>I set priorities and operating rules, direct AI-assisted implementation, investigate failures
-    and check the results. Backups, replay checks and rollback procedures support that work.</p>
+<section id="sports"><div class="wrap">
+  <span class="eyebrow">03 / Four different problem spaces</span><h2>Shared discipline. Sport-specific systems.</h2>
+  <p class="intro">These are distinct implementations. A basketball rotation, a hockey goalie change
+  and a baseball pitching change cannot be treated as the same data problem.</p>
+  <div class="sport-grid">
+    <article class="sport"><span class="league">NBA / Basketball</span><h3>Who is available—and who gets the minutes?</h3>
+      <p>Live score and play-by-play observation sits alongside pregame rotation and player research.
+      Availability changes, shared lineups and conserved team minutes matter to the calculation.</p>
+      <a class="text-link" href="#see" data-gallery-link="nbapre">View the pregame dashboard →</a>
+      <br><a class="text-link" href="engineering.html#nba">Read the NBA notes →</a></article>
+    <article class="sport"><span class="league">NHL / Hockey</span><h3>Connect shots, goals and player opportunity.</h3>
+      <p>Live game state and pregame lineup research account for goalies, manpower and changing ice
+      time. Source and coverage checks make missing or quarantined inputs visible.</p>
+      <a class="text-link" href="#see" data-gallery-link="hockey">View the hockey dashboard →</a>
+      <br><a class="text-link" href="engineering.html#nhl">Read the NHL notes →</a></article>
+    <article class="sport"><span class="league">NFL / Football</span><h3>Follow the clock, possession and player role.</h3>
+      <p>Live observation and pregame joint simulations use football-specific state. Quarterback
+      identity, official inactives and opportunity influence what can be interpreted or compared.</p>
+      <a class="text-link" href="#see" data-gallery-link="football">View the football dashboard →</a>
+      <br><a class="text-link" href="engineering.html#nfl">Read the NFL notes →</a></article>
+    <article class="sport"><span class="league">MLB / Baseball</span><h3>Generate related outcomes from one game.</h3>
+      <p>A shared inning, base, out and score simulation connects batter and pitcher outcomes.
+      Pitch-level research remains separate from the established decision model.</p>
+      <a class="text-link" href="#see" data-gallery-link="desk">See the multi-sport research desk →</a>
+      <br><a class="text-link" href="engineering.html#mlb">Read the MLB notes →</a></article>
+  </div>
+  <p class="small">Models and scenario layers remain research. Installed software, a coherent simulation
+  or a successful replay does not establish predictive quality.</p>
+</div></section>
+
+<section id="engineering"><div class="wrap">
+  <span class="eyebrow">04 / Engineering choices</span><h2>The decisions behind the complexity.</h2>
+  <p class="intro">The interesting part is how the pieces are controlled. These choices make the
+  platform easier to inspect, operate and change.</p>
+  <div class="pattern-list">
+    <article class="pattern"><span class="index">01</span><h3>Keep a result tied to its inputs.</h3><p>Retained source records, version identities and replay paths help answer “what did the system know when it issued this?”<br><a href="engineering.html#evidence">Evidence and replay →</a></p></article>
+    <article class="pattern"><span class="index">02</span><h3>Separate research from authority.</h3><p>Challenger models can be compared without silently replacing the established model. Promotion is a distinct review decision.<br><a href="engineering.html#research">Research boundaries →</a></p></article>
+    <article class="pattern"><span class="index">03</span><h3>Make related outputs agree.</h3><p>Shared simulated game paths connect team and player results. For example, baseball runs add up to the same simulated team score.<br><a href="engineering.html#coherence">Consistency checks →</a></p></article>
+    <article class="pattern"><span class="index">04</span><h3>Budget the machine’s attention.</h3><p>Bounded workers, time limits, storage holds and paid-request budgets keep one workflow from consuming everything another needs.<br><a href="engineering.html#operations">Resources and scheduling →</a></p></article>
+    <article class="pattern"><span class="index">05</span><h3>Make a change reversible.</h3><p>Release identities, staged checks, backups and rollback procedures support controlled changes. A running process is only one piece of verification.<br><a href="engineering.html#changes">Change and recovery →</a></p></article>
   </div>
 </div></section>
 
 <section id="see"><div class="wrap">
-  <h2>Real dashboards, with the context to read them</h2>
-  <p class="section-intro">Screens captured from my platform on 24 November 2026. These are recorded
-  examples; the displayed forecasts and health states describe that capture, not a live feed.</p>
-
-  <figure>
-    <span class="shotlabel">A basketball game, in progress</span>
-    <img src="img_nba.jpg" alt="Live basketball dashboard with projections and accuracy panel" width="2100" height="1400" decoding="async" loading="lazy">
-    <figcaption>The game is in the second quarter. The machine thinks the final score will be about
-    110–106, and it says plainly that its methods <em>disagree</em> with each other right now. The box
-    on the right is its own report card: how far off it has been in games like this one.
-    <span class="tech">Technical: live total and projected final, model-agreement state, a live rule
-    labelled as a paper test with its running record and a read date at 100 picks, and a
-    miss-distribution panel bucketed by points scored and by lead, with bias separated for Main and
-    the blend. Chips carry source-failover state and remaining paid odds credits.</span></figcaption>
+  <span class="eyebrow">05 / Recorded evidence</span><h2>Explore the actual workbench.</h2>
+  <p class="intro">Choose a view. Each pairs an original dashboard capture with a short explanation
+  of what to notice. The images are recorded examples, not a live connection to my machine.</p>
+  <figure class="gallery">
+    <div class="gallery-controls" role="group" aria-label="Choose a dashboard view">
+      <button class="shot-button" type="button" data-shot="basketball" aria-pressed="true" aria-controls="gallery-view">NBA live</button>
+      <button class="shot-button" type="button" data-shot="nbapre" aria-pressed="false" aria-controls="gallery-view">NBA pregame</button>
+      <button class="shot-button" type="button" data-shot="hockey" aria-pressed="false" aria-controls="gallery-view">NHL slate</button>
+      <button class="shot-button" type="button" data-shot="football" aria-pressed="false" aria-controls="gallery-view">NFL live</button>
+      <button class="shot-button" type="button" data-shot="desk" aria-pressed="false" aria-controls="gallery-view">Multi-sport desk</button>
+      <button class="shot-button" type="button" data-shot="periods" aria-pressed="false" aria-controls="gallery-view">Game periods</button>
+      <button class="shot-button" type="button" data-shot="scenario" aria-pressed="false" aria-controls="gallery-view">Scenario research</button>
+      <button class="shot-button" type="button" data-shot="review" aria-pressed="false" aria-controls="gallery-view">Model review</button>
+      <button class="shot-button" type="button" data-shot="blends" aria-pressed="false" aria-controls="gallery-view">Model blends</button>
+    </div>
+    <div id="gallery-view">
+      <div class="gallery-copy" aria-live="polite" aria-atomic="true">
+        <div><span class="eyebrow" id="shot-category">NBA / Live observation</span><h3 id="shot-title">A forecast with its own report card.</h3></div>
+        <div><p id="shot-copy">The live basketball view brings game state, projected outcomes and model disagreement together. The accuracy panel gives the forecast context instead of presenting a number on its own.</p>
+          <a class="text-link" id="shot-full" href="img_nba.jpg">Open the full-size image ↗</a></div>
+      </div>
+      <div class="gallery-image"><a id="shot-image-link" href="img_nba.jpg" aria-label="Open full-size NBA live dashboard"><img id="shot-image" src="img_nba.jpg" width="2100" height="1400" loading="lazy" decoding="async" alt="Recorded NBA live dashboard with game projections and a model accuracy panel"></a></div>
+    </div>
+    <figcaption>Captures collected 24 November 2026. Individual data and report timestamps may be earlier.</figcaption>
   </figure>
-
-  <figure>
-    <span class="shotlabel">A whole night of hockey</span>
-    <img src="img_dash.jpg" alt="NHL dashboard showing fifteen games" width="2100" height="982" decoding="async" loading="lazy">
-    <figcaption>Fifteen games at once, each with who it favours and how many goals it expects. The
-    buttons let me jump to just the close games, or just the ones where the methods are arguing. Up in
-    the corner, the machine is admitting that some of its own data is stale — it tells on itself.
-    <span class="tech">Technical: slate view with per-game win probability and projected total,
-    filters for 40–60% games, model disagreement and alert state, and health chips reporting feed
-    staleness and a late audit runner.</span></figcaption>
-  </figure>
-
-  <figure>
-    <span class="shotlabel">Football — a guess that already finished</span>
-    <img src="img_nfl.jpg" alt="NFL dashboard showing a settled flagged pick" width="2100" height="1366" decoding="async" loading="lazy">
-    <figcaption>This one has a result. The machine said Houston would win, and they did. The label
-    says <strong>PAPER, NOT PROVEN</strong>, which is me reminding myself that one correct guess
-    proves nothing at all.
-    <span class="tech">Technical: settled flag with original decimal price retained so the record
-    cannot be improved retrospectively, the week's card with per-flag outcomes, and forecast error
-    split by clock and lead.</span></figcaption>
-  </figure>
+  <noscript><div class="no-script"><p>All dashboard images are available without the interactive selector:</p><ul><li><a href="img_nba.jpg">NBA live</a></li><li><a href="img_nbapre.jpg">NBA pregame</a></li><li><a href="img_dash.jpg">NHL</a></li><li><a href="img_nfl.jpg">NFL</a></li><li><a href="img_mlb.jpg">Multi-sport desk</a></li><li><a href="img_periods.jpg">Game periods</a></li><li><a href="img_scenario.jpg">Scenarios</a></li><li><a href="img_review.jpg">Review</a></li><li><a href="img_blends.jpg">Blends</a></li></ul></div></noscript>
 </div></section>
 
 <section id="grade"><div class="wrap">
-  <h2>Evaluation is part of the system</h2>
-  <p class="section-intro">A short run of good results can be misleading. The platform uses declared
-  review points, preserved records and comparisons against a reference to make decisions easier to audit.</p>
-
-  <div class="cards">
-    <div class="card"><b>Decide the test first</b><span>Before a new method is allowed to count, I write down how many games it has to be measured over and the date I will look. No peeking early.</span></div>
-    <div class="card"><b>No automatic promotion</b><span>Even if a method looks great, it does not replace the favourite until it has cleared the bar. The system will not do it for me.</span></div>
-    <div class="card"><b>Count games once</b><span>The same game cannot be counted several times to make a sample look bigger than it is.</span></div>
-    <div class="card"><b>Keep the losses</b><span>Ideas that failed stay in the record. The failures are the useful part.</span></div>
+  <span class="eyebrow">06 / Measurement and judgment</span><h2>A result needs a fair test.</h2>
+  <p class="intro">A good-looking forecast is a starting point. The evaluation process asks whether
+  it held up against a reference, on the right sample, with failures still included.</p>
+  <div class="steps">
+    <div class="evaluation-step"><span class="eyebrow">Before outcomes</span><h3>Declare the comparison.</h3><p>Identify the model, eligible population, reference and review point. Keep experiments separate from the established path.</p></div>
+    <div class="evaluation-step"><span class="eyebrow">When outcomes arrive</span><h3>Score the retained record.</h3><p>Check error, bias and uncertainty. Related observations from one game do not become independent games.</p></div>
+    <div class="evaluation-step"><span class="eyebrow">At review</span><h3>Make a deliberate decision.</h3><p>Keep failed ideas and visible holds in context. A promising result does not automatically promote a model.</p></div>
   </div>
-
-  <figure>
-    <span class="shotlabel">The report card</span>
-    <img src="img_review.jpg" alt="Prospective review table scoring each model" width="2100" height="996" decoding="async" loading="lazy">
-    <figcaption>Every method, scored: how far off on average, whether it leans high or low, and how it
-    compares head-to-head with the favourite. "Warm-up" means it has not earned an opinion yet.
-    <span class="tech">Technical: prospective review over independently settled games — total MAE,
-    margin MAE, bias, 95% coverage and paired delta versus Main. Finals wait six hours for revisions;
-    review checkpoint at 80 games; no automatic promotion.</span></figcaption>
-  </figure>
-
-  <figure>
-    <span class="shotlabel">Six ways of combining opinions</span>
-    <img src="img_blends.jpg" alt="Blend lab showing six declared methods" width="2100" height="1130" decoding="async" loading="lazy">
-    <figcaption>Six different recipes for mixing the methods together, each written down in advance
-    with its own rule — and each one showing <em>why</em> it is holding back rather than silently
-    producing a number.
-    <span class="tech">Technical: equal-weight family reference, 60/40 Main anchor, disagreement guard
-    on a declared distribution limit, regularised consensus pool, lineup-opportunity method gated on
-    confirmed dressed skaters and goalies, and a situational learner requiring 30 settled comparable
-    games at the same lead bucket.</span></figcaption>
-  </figure>
-
+  <p class="boundary"><strong>Important distinction:</strong> replay checks whether a calculation can
+  be reproduced. Calibration checks whether stated probabilities match observed frequencies. One does
+  not establish the other.</p>
   <div class="source-overview" id="sources">
-    <h3>Know what the data can support</h3>
-    <p>Finding a source is only the first step. I record what it contributes, whether I can access
-    it and what still needs checking before it can be used.</p>
+    <h3>Know what the data can support.</h3><p class="intro">Every source comes with a contribution,
+    an access state and a limit. Here is the source-health view in plain language.</p>
     <div class="source-grid">
-      <div class="source-card">
-        <span class="status">EXISTING CONNECTIONS</span>
-        <strong>Keep the inputs traceable</strong>
-        <p>The source record identifies the existing game-event and market-data connections, along
-        with the information each provides.</p>
-      </div>
-      <div class="source-card">
-        <span class="status">REVIEW NEEDED</span>
-        <strong>Hold until checked</strong>
-        <p>Some historical and shot-quality data stays out while usage terms or licensing remain
-        unverified. Potential value is recorded separately from permission to use it.</p>
-      </div>
-      <div class="source-card">
-        <span class="status">UNAVAILABLE</span>
-        <strong>Show the missing pieces</strong>
-        <p>Premium feeds and raw tracking data have access limits. I document those gaps so the
-        system’s conclusions can be read with the limits in view.</p>
-      </div>
+      <div class="source-card"><span class="status">EXISTING CONNECTIONS</span><strong>Keep the inputs traceable.</strong><p>The source record identifies existing game-event and market-data connections and the information each provides.</p></div>
+      <div class="source-card"><span class="status">REVIEW NEEDED</span><strong>Hold until checked.</strong><p>Some historical and shot-quality data stays out while usage terms or licensing remain unverified. Potential value is recorded separately.</p></div>
+      <div class="source-card"><span class="status">UNAVAILABLE</span><strong>Show the missing pieces.</strong><p>Premium feeds and raw tracking data have access limits. Those gaps stay visible when interpreting the system’s conclusions.</p></div>
     </div>
-    <p class="source-boundary"><strong>The evaluation limit:</strong> historical data can help
-    diagnose a result. It does not, by itself, prove that a method predicts future games well.</p>
-    <details>
-      <summary>View the original source-health dashboard</summary>
-      <div class="inner">
-        <p>The archived technical view records source-by-source access states and coverage. The
-        summary above explains the decisions without requiring you to read its tables.</p>
-        <p><a href="img_sources.jpg">Open the full-size dashboard image →</a></p>
-        <figure>
-          <img src="img_sources.jpg" alt="Archived source-health dashboard with connected feeds, sources awaiting terms or license review, unavailable feeds and historical-data evaluation limits" width="1700" height="909" decoding="async" loading="lazy">
-          <figcaption>Recorded dashboard evidence. Source states describe this capture, not a live
-          access check.</figcaption>
-        </figure>
-      </div>
-    </details>
+    <p class="source-boundary">Historical data can help diagnose a result. It does not, by itself,
+    prove that a method predicts future games well.</p>
+    <details><summary>View the original source-health dashboard</summary><div class="detail-body">
+      <p>The archived technical view records source-by-source access states and coverage. Its states
+      describe the capture, not a current access check.</p><p><a href="img_sources.jpg">Open the full-size source-health image ↗</a></p>
+      <figure><img src="img_sources.jpg" width="1700" height="909" loading="lazy" decoding="async" alt="Archived source-health table showing existing feeds, unverified terms or licensing and unavailable data"><figcaption>Original dashboard evidence; the summary above explains the decisions.</figcaption></figure>
+    </div></details>
   </div>
 </div></section>
 
 <section id="broke"><div class="wrap">
-  <h2>Incident investigations and operating decisions</h2>
-  <p class="section-intro">These cases show the work behind the dashboards: establish the symptom,
-  trace the cause, make a controlled change and verify the outcome.</p>
+  <span class="eyebrow">07 / Incident investigations</span><h2>The most useful evidence is what went wrong.</h2>
+  <p class="intro">Four cases show how I move from a symptom to a cause, a controlled change and
+  verification. Open any case to follow the investigation.</p>
+  <details open id="case-output"><summary><span class="case-summary"><strong>Services were running. The output had stopped.</strong><span>Monitoring · SQL performance · malformed vendor data</span></span></summary><div class="case-body">
+    <dl><dt>Observed</dt><dd>Live pricing stopped producing records while the dashboard still showed running services.</dd>
+      <dt>Investigated</dt><dd>I compared expected outputs with actual completions, then traced logs, process state and database behavior. Resource contention, a slow lookup and malformed third-party records were compounding.</dd>
+      <dt>Changed</dt><dd>An index reduced a documented lookup from about two seconds to under a millisecond. The malformed-input path was changed to stop and report the problem.</dd>
+      <dt>Verified</dt><dd>I replayed the affected period, checked that the missing records were produced and watched a full game window.</dd></dl>
+    <p class="case-lesson"><strong>Operating lesson:</strong> monitor the work a service should produce, alongside whether its process is alive.</p>
+  </div></details>
+  <details id="case-identity"><summary><span class="case-summary"><strong>A safety check caused three days of silence.</strong><span>Code identity · missing-output detection · change control</span></span></summary><div class="case-body">
+    <dl><dt>Observed</dt><dd>A downstream workflow produced nothing after I edited a watched file.</dd><dt>Investigated</dt><dd>The code fingerprint no longer matched. The component correctly refused to run, but that refusal was not being surfaced clearly.</dd><dt>Changed</dt><dd>I made the hold visible through alerting and began batching changes that touched model-affecting code into a planned window.</dd><dt>Verified</dt><dd>The investigation compared expected and actual job completions—the check the green status page had been missing.</dd></dl>
+    <p class="case-lesson"><strong>Operating lesson:</strong> a deliberate safety hold needs an observable status and a clear next action.</p>
+  </div></details>
+  <details id="case-storage"><summary><span class="case-summary"><strong>Recover space without losing the recovery path.</strong><span>Database journal · capacity · backup verification</span></span></summary><div class="case-body">
+    <dl><dt>Observed</dt><dd>A database journal had grown to roughly 122 GB and was putting the volume under pressure.</dd><dt>Investigated</dt><dd>I established what recovery depended on and what state had to be retained before making a change.</dd><dt>Changed</dt><dd>I kept a verified copy, reduced the journal to about 36 GB and retained the pre-change copy until the next day.</dd><dt>Verified</dt><dd>I confirmed the database opened and queried correctly before removing the old copy.</dd></dl>
+    <p class="case-lesson"><strong>Operating lesson:</strong> understand dependencies, preserve a recovery point, change, verify, then clean up.</p>
+  </div></details>
+  <details id="case-timing"><summary><span class="case-summary"><strong>The workflow never reached its inputs.</strong><span>Scheduling · event time · zero-output checks</span></span></summary><div class="case-body">
+    <dl><dt>Observed</dt><dd>A component’s evaluation history was empty across the games it had been scheduled for.</dd><dt>Investigated</dt><dd>Stages used scheduled game start rather than actual start. Their eligibility windows could close before the required inputs arrived.</dd><dt>Changed</dt><dd>I corrected the timing reference and added a check for zero output during a period when work should have occurred.</dd><dt>Verified</dt><dd>The audit treated eligible work and actual output as separate questions, rather than relying on the absence of exceptions.</dd></dl>
+    <p class="case-lesson"><strong>Operating lesson:</strong> “nothing failed” and “the work happened” are different claims.</p>
+  </div></details>
+  <p class="small">Incident figures are documented in November 2026 operating notes. They are specific
+  case measurements, not current platform-wide performance benchmarks.</p>
+</div></section>
 
-  <div class="story">
-    <h3>Running services, missing output</h3>
-    <p>The screen was green. Every program was running. But the machine had quietly stopped producing
-    anything.</p>
-    <p>I found it by asking a different question — not "is it running?" but "what should it have made
-    in the last hour, and did it?" Three things had gone wrong at once: the computer was overloaded,
-    one database lookup had got slow as the data grew, and a supplier had started sending broken
-    records.</p>
-    <p>I added an index that took one lookup from about two seconds to under a thousandth of a second,
-    and changed the broken-data path so it stops instead of carrying on.</p>
-    <p class="lesson">Lesson: a green light is not evidence. Check the output, not the status.</p>
-  </div>
-
-  <div class="story">
-    <h3>A code change triggered a silent safety hold</h3>
-    <p>I edited one file. That file was being watched by a safety check, which noticed the change and
-    refused to run — exactly as designed. But it refused <em>silently</em>, and everything downstream
-    of it produced nothing for three days before I noticed.</p>
-    <p>I made that refusal shout instead of whisper, and I started batching risky changes into one
-    window a week rather than editing whenever an idea struck.</p>
-    <p class="lesson">Lesson: a safety mechanism that fails quietly is only half a safety mechanism.</p>
-  </div>
-
-  <div class="story">
-    <h3>Recovering space without losing the recovery path</h3>
-    <p>A log file had grown large enough to threaten the whole disk. The tempting move is to delete it
-    immediately. Instead I worked out what recovery actually depended on, took a copy I had verified I
-    could restore from, trimmed it to 36 GB, checked everything still opened — and only deleted the
-    backup copy a day later.</p>
-    <p class="lesson">Lesson: when you are under pressure is exactly when you do things in order.</p>
-  </div>
-
-  <div class="story">
-    <h3>Finding a workflow that never reached its inputs</h3>
-    <p>I went looking for a component's track record and found it empty. Not bad — <em>empty</em>. For
-    every game it had ever been scheduled for.</p>
-    <p>Every stage was timing itself off when a game was <em>scheduled</em> to start rather than when
-    it <em>actually</em> started. Games start late, so each stage's window closed before its inputs
-    arrived. Nothing ever errored, because nothing ever failed — it just never ran.</p>
-    <p class="lesson">Lesson: nobody reports the bug where nothing happens. Now I watch for silence.</p>
-  </div>
+<section id="fit"><div class="wrap">
+  <span class="eyebrow">08 / Professional context</span><h2>The same judgment, with people in the loop.</h2>
+  <p class="intro">My professional work is customer-facing enterprise support. The platform gives me
+  an independent place to apply investigation, clear communication and operational ownership.</p>
+  <div class="career-row"><div class="when">NOV 2026–PRESENT<br>TRIMBLE</div><div><h3>Team Lead &amp; Senior Integration &amp; Developer Support Analyst</h3><p>I guide 3–4 analysts on a flagship enterprise customer’s cases while staying hands-on with API, authentication, log and data investigations. I work with Product and Engineering through escalation and resolution.</p></div></div>
+  <div class="career-row"><div class="when">2022–NOV 2026<br>TRIMBLE</div><div><h3>Technical support → integration support → team leadership</h3><p>My experience spans troubleshooting integrations, preparing reproducible cases and improving support workflows. Trimble T&amp;L recognized my playbooks and operational improvements with the Innovate MVP award in Q2 2025.</p></div></div>
+  <div class="career-row"><div class="when">2020–2022<br>ETS</div><div><h3>Support across phone, chat and email</h3><p>Customer-facing experience explaining issues, gathering the right information and helping people move forward across multiple support channels.</p></div></div>
+  <p class="credentials">B.S., Network Engineering · A.S., Computer Networking · Google IT Support Certificate</p>
 </div></section>
 
 <section id="learned"><div class="wrap">
-  <h2>What the evidence changed</h2>
-
-  <ul>
-    <li><strong>Confidence needs its own test.</strong> A forecast can sound precise and still be
-    poorly calibrated. I compare the stated confidence with settled results and keep the reference
-    result alongside it.</li>
-    <li><strong>Related inputs do not create independent evidence.</strong> Multiple observations
-    from one game can make a sample look larger than it is. The review process counts games once
-    and keeps related observations in context.</li>
-    <li><strong>Freshness is part of correctness.</strong> A plausible output can become misleading
-    when its feed is late. Timing, source health and missing-input checks belong beside the result.</li>
-    <li><strong>Killing your own idea is a skill.</strong> I was convinced a certain gap in the data
-    explained my errors. I tested it, then tested it again on more games, and it explained nothing. So
-    I threw it away.</li>
-  </ul>
-
-  <div class="note">
-    <p><b>Built with AI assistance.</b> I use AI heavily for implementation. I direct the architecture
-    and operating rules, investigate failures and verify changes through logs, replay and observed
-    output. The platform is an independent project I operate on my own machine.</p>
-    <p>The models have not demonstrated a reliable advantage over closing betting markets. The
-    evidence here is the operating work: making failures visible, preserving results, testing
-    assumptions and changing direction when the evidence calls for it.</p>
-  </div>
+  <span class="eyebrow">09 / Ownership and limits</span><h2>What I own. What the evidence supports.</h2>
+  <div class="ownership-grid"><div><h3>AI helps me implement. I direct and verify.</h3><p>I use AI heavily for code and implementation support. My work is setting priorities and architecture, choosing operating rules, investigating failures and checking the result through retained evidence, replay and observed behavior.</p><p>I’m most interested in a concrete decision: what changed, why it changed and how I knew the change helped.</p></div>
+    <div><h3>Research remains research.</h3><p>The models have not demonstrated a reliable advantage over closing betting markets. A dashboard, a successful replay and a larger simulation do not establish a profitable or calibrated system.</p><p>The value I bring is practical: trace the issue, explain the evidence, make a controlled change and check what happened next.</p></div></div>
+  <a class="text-link" href="engineering.html#boundaries">Read the full evidence boundaries →</a>
 </div></section>
 
-<section id="contact"><div class="wrap">
-  <h2>Let’s walk through a real problem</h2>
-  <p class="section-intro">If this work connects with your team, I’m happy to discuss an incident,
-  trace a workflow or explain the decisions behind the platform.</p>
-  <div class="contact-panel">
-    <h3>Start with the case that interests you</h3>
-    <p>Customer escalations, missing output, data quality or safe recovery: choose a starting point
-    and I can walk through the investigation and what changed.</p>
-    <div class="actions">
-      <a class="btn primary" href="mailto:jahvaredwards@gmail.com">Email Jahvar</a>
-      <a class="btn" href="https://www.linkedin.com/in/jahvar-edwards/">Connect on LinkedIn</a>
-    </div>
-    <p class="source-link"><a href="https://github.com/Cptvar/Cptvar.github.io">View this website’s source on GitHub</a>.
-    The repository contains this portfolio; the platform code is private.</p>
-  </div>
+<section id="references"><div class="wrap">
+  <span class="eyebrow">10 / Go deeper</span><h2>A clear path to the supporting detail.</h2>
+  <p class="intro">Start with the overview, then follow the parts that interest you. The guide defines
+  unfamiliar terms and connects the design choices to the recorded evidence.</p>
+  <div class="reference-grid"><article class="reference"><h3>The engineering field guide</h3><p>Architecture, sport-specific systems, data integrity, resource management, replay, change control and a plain-language glossary.</p><a class="text-link" href="engineering.html">Read the field guide →</a></article>
+    <article class="reference"><h3>The public source repository</h3><p>Inspect this website’s HTML, styles, interactions and architecture notes. The underlying sports platform remains private.</p><a class="text-link" href="https://github.com/Cptvar/Cptvar.github.io">View the website on GitHub ↗</a></article></div>
 </div></section>
+
+<section id="contact" class="contact"><div class="wrap split"><div><span class="eyebrow">Continue the conversation</span><h2>Pick a problem. I’ll walk you through it.</h2><p>Customer escalation, missing output, model traceability or safe recovery—choose a starting point and we can discuss the decisions behind the work.</p></div><div><div class="actions"><a class="button primary" href="mailto:jahvaredwards@gmail.com">Email Jahvar ↗</a><a class="button" href="https://www.linkedin.com/in/jahvar-edwards/">Connect on LinkedIn ↗</a></div><p class="hero-note">New Jersey, US · Enterprise integration support · Independent platform operations</p></div></div></section>
 </main>
-
-<footer><div class="wrap">
-  <p><strong>Jahvar Edwards</strong> · <a href="mailto:jahvaredwards@gmail.com">jahvaredwards@gmail.com</a>
-  · 609-240-2409 · New Jersey ·
-  <a href="https://www.linkedin.com/in/jahvar-edwards/">LinkedIn</a></p>
-  <p>Dashboard captures: 24 November 2026. These are recorded examples, rather than a live feed.</p>
-</div></footer>
-
+<footer><div class="wrap"><p>Jahvar Edwards · Portfolio updated 27 November 2026.<br>Recorded dashboard evidence; no live machine connection.</p><a href="engineering.html#references">Source basis &amp; evidence limits →</a></div></footer>
 </body>
 </html>
